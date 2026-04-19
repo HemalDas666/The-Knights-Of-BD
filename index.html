@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="The Knight's OF BD - Premium Minecraft Gaming Server">
+    <meta name="theme-color" content="#0a0a1a">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>The Knight's OF BD | Minecraft Server</title>
+    <link rel="icon" type="image/x-icon" href="assets/KnightLOGO11.jpg">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loader">
+            <div class="sword">
+                <div class="blade"></div>
+                <div class="hilt"></div>
+            </div>
+            <p>Loading The Knight's OF BD...</p>
+        </div>
+    </div>
+
+    <!-- Floating Copy Button - Top Left Corner -->
+    <button class="floating-copy-btn" id="floatingCopyBtn">
+        <i class="fas fa-copy"></i>
+        <span>Click to Copy IP</span>
+    </button>
+
+    <!-- Simple Header - Only Logo + Name (No Nav Bar) -->
+    <header class="simple-header">
+        <div class="header-container">
+            <img src="assets/KnightLOGO9.jpg" alt="The Knight's OF BD Logo" class="site-logo">
+            <h1 class="site-title">THE KNIGHT'S OF BD</h1>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <main class="hero-section">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h2 class="main-title">
+                    <span class="title-gradient">Welcome To</span>
+                    <span class="title-outline">THE KNIGHT'S OF BD</span>
+                </h2>
+                <p class="tagline">Your Ultimate Premium Minecraft Gaming Experience</p>
+                
+                <div class="server-stats">
+                    <div class="stat">
+                        <i class="fas fa-users"></i>
+                        <span>100+ Player Slots</span>
+                    </div>
+                    <div class="stat">
+                        <i class="fas fa-server"></i>
+                        <span>99.9% Uptime</span>
+                    </div>
+                    <div class="stat">
+                        <i class="fas fa-bolt"></i>
+                        <span>Zero Lag</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hero-actions">
+                <button class="btn-primary" id="copyIpBtn">
+                    <i class="fas fa-copy"></i> Copy Server IP
+                </button>
+                <button class="btn-secondary" id="discordBtn">
+                    <i class="fab fa-discord"></i> Join Discord
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Special Members Section -->
+    <section class="members-section">
+        <h2 class="section-title">👑 Server Legends 👑</h2>
+        <div class="members-grid">
+            <div class="member-card owner">
+                <div class="member-icon">
+                    <i class="fas fa-crown"></i>
+                </div>
+                <h3>Owner</h3>
+                <p class="member-name">Hemal</p>
+                <p class="member-ign">⚡ In Game Name: <span>DevasisPal</span></p>
+                <span class="member-badge">👑 Supreme Leader</span>
+            </div>
+            
+            <div class="member-card coowner">
+                <div class="member-icon">
+                    <i class="fas fa-star"></i>
+                </div>
+                <h3>Co-Owner</h3>
+                <p class="member-name">Ahmad </p>
+                <p class="member-ign">⭐ In Game Name: <span>Slighter</span></p>
+                <span class="member-badge">⚡ Right Hand</span>
+            </div>
+            
+            <div class="member-card knight">
+                <div class="member-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>First Knight</h3>
+                <p class="member-name">Hana</p>
+                <p class="member-ign">⚔️ In Game Name: <span>NotJelly</span></p>
+                <span class="member-badge">🌟 The First Knight</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section" id="features">
+        <h2 class="section-title">Server Features</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Anti-Cheat System</h3>
+                <p>Advanced protection ensuring fair gameplay for all players</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-database"></i>
+                </div>
+                <h3>Daily Backups</h3>
+                <p>Your progress is safe with automated daily backups</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h3>Cross-Platform</h3>
+                <p>Play on Java, Bedrock, or any compatible client</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <h3>Active Community</h3>
+                <p>Join thousands of friendly players worldwide</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                <p class="server-ip-footer">💻 Java IP: theknightsofbd.mcsh.io:25565</p>
+                <p class="server-ip-footer">📱 Bedrock Ports: 19132 | 11772</p>
+            </div>
+            <div class="footer-credit">
+                <p><i class="fas fa-code"></i> Made by <span class="highlight">Hemal Das</span></p>
+                <p>&copy; 2026 The Knight's OF BD. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Server IP Modal -->
+    <div class="modal" id="ipModal">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <h2><i class="fas fa-server"></i> Server Connection</h2>
+            
+            <div class="ip-section">
+                <h3><i class="fab fa-java"></i> Java Edition</h3>
+                <div class="ip-container">
+                    <code class="server-ip">theknightsofbd.mcsh.io:25565</code>
+                    <button class="copy-btn" data-ip="theknightsofbd.mcsh.io:25565">
+                        <i class="fas fa-copy"></i> Copy
+                    </button>
+                </div>
+            </div>
+            
+            <div class="ip-section">
+                <h3><i class="fas fa-mobile-alt"></i> Bedrock Edition</h3>
+                <div class="ip-container">
+                    <code class="server-ip">theknightsofbd.mcsh.io</code>
+                    <button class="copy-btn" data-ip="theknightsofbd.mcsh.io">
+                        <i class="fas fa-copy"></i> Copy IP
+                    </button>
+                </div>
+                <div class="port-info">
+                    <p><strong>Ports:</strong> 19132 or 11772</p>
+                </div>
+            </div>
+            
+            <div class="version-info">
+                <p><i class="fas fa-code-branch"></i> <strong>Supported Versions:</strong> 1.8 - 1.21.x</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Container -->
+    <div class="notification-container" id="notificationContainer"></div>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>
