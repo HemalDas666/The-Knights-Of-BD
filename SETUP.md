@@ -52,7 +52,8 @@ Then open the printed URL (usually `http://localhost:3000`). Any static server w
 
 ## 3. Deploy to GitHub Pages
 
-The repository is `hemal1123/theknightsofbd`.
+The repository is `HemalDas666/The-Knights-Of-BD`, deployed at
+`https://hemaldas666.github.io/The-Knights-Of-BD/`.
 
 1. Commit and push everything:
    ```powershell
@@ -65,7 +66,7 @@ The repository is `hemal1123/theknightsofbd`.
    - Branch: **main**, folder: **/ (root)**
    - Save.
 3. Wait for the green deployment check. The site will be at:
-   `https://hemal1123.github.io/theknightsofbd/`
+   `https://hemaldas666.github.io/The-Knights-Of-BD/`
 
 If you use a custom domain, add it under **Settings → Pages → Custom domain** and follow GitHub's DNS instructions. A custom domain also has to be added to Firebase (next section).
 
@@ -127,7 +128,7 @@ Firestore Console writes bypass these rules, so staff can still update an order'
 
 Firebase Console → **Authentication → Settings → Authorized domains → Add domain**:
 
-- `hemal1123.github.io` (just the hostname — no `https://`, no path)
+- `hemaldas666.github.io` (just the hostname — no `https://`, no path)
 - your custom domain, if you add one later
 
 Without this, sign-in and email actions can fail with `auth/unauthorized-domain`.
@@ -136,7 +137,7 @@ Without this, sign-in and email actions can fail with `auth/unauthorized-domain`
 
 - The register form sends a verification email automatically. The account page has **Resend** and **I've verified** buttons.
 - “Forgot your password?” in the login modal sends a reset link.
-- Optional: **Authentication → Templates** lets you rename the sender, change the reply-to, and set a custom action URL (for example `https://hemal1123.github.io/theknightsofbd/account/`).
+- Optional: **Authentication → Templates** lets you rename the sender, change the reply-to, and set a custom action URL (for example `https://hemaldas666.github.io/The-Knights-Of-BD/account/`).
 - With the default Firebase mailer, the sender is `noreply@the-knights-acc.firebaseapp.com`. For a small server this is fine, but tell players to check **spam**. A custom SMTP domain requires the Blaze plan.
 
 ---
@@ -211,7 +212,7 @@ There is no customer-facing cancel button. Handle refunds manually, then set the
 
 - [ ] Firestore database created and the rules above published
 - [ ] Email/Password provider enabled
-- [ ] `hemal1123.github.io` (and any custom domain) added to Firebase authorised domains
+- [ ] `hemaldas666.github.io` (and any custom domain) added to Firebase authorised domains
 - [ ] Prices, rank perks and payment numbers checked in `js/config.js`
 - [ ] Supported client versions confirmed — `1.8 – 1.21.x` only works on Paper 1.21.11 if ViaVersion is installed; otherwise change it to `1.21.x` in `js/config.js` and `status/index.html`
 - [ ] Both server IPs tested in Minecraft
