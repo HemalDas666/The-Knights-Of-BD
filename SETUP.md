@@ -109,14 +109,14 @@ The web API key there is public by design — security is enforced by Firestore 
 
 ### 4.2 Create the admin account
 
-The only admin email is **`dasheaml08@gmail.com`**, set in two places:
+The only admin email is **`dashemal08@gmail.com`**, set in two places:
 
 - `js/config.js` → `ADMIN.email`
 - the `isAdmin()` function in the Firestore rules below
 
 Create the account **with that exact email**:
 
-1. On the live site, open **Login → Create account** and register `dasheaml08@gmail.com`
+1. On the live site, open **Login → Create account** and register `dashemal08@gmail.com`
    with a strong, unique password. (Or add the user in Firebase Console; the email must
    still be verified.)
 2. Open the verification email from Firebase and click the link.
@@ -155,7 +155,7 @@ service cloud.firestore {
     // Only the verified admin email may touch money, orders or audit logs.
     function isAdmin() {
       return signedIn()
-        && request.auth.token.email == 'dasheaml08@gmail.com'
+        && request.auth.token.email == 'dashemal08@gmail.com'
         && request.auth.token.email_verified == true;
     }
 
@@ -328,7 +328,7 @@ audit log. Use this for corrections, compensation, or manual refunds.
 ### Access
 
 - URL: `https://hemaldas666.github.io/The-Knights-Of-BD/admin/`
-- Sign in with `dasheaml08@gmail.com`.
+- Sign in with `dashemal08@gmail.com`.
 - The gate checks the email and `emailVerified`; Firestore rules independently enforce
   the same checks on every read and write.
 - The page is `noindex,nofollow` and is not in the public navigation. Because the repo is
@@ -461,7 +461,7 @@ Actions include `topup.approved`, `topup.rejected`, `order.paid`,
 
 - [ ] Firestore database created and the rules in section 4.3 published
 - [ ] Email/Password provider enabled
-- [ ] Admin account `dasheaml08@gmail.com` registered **and email-verified**
+- [ ] Admin account `dashemal08@gmail.com` registered **and email-verified**
 - [ ] `ADMIN.email` in `js/config.js` matches the rules
 - [ ] `hemaldas666.github.io` (and any custom domain) added to Firebase authorised domains
 - [ ] Prices, rank perks and payment numbers checked in `js/config.js`

@@ -23,7 +23,7 @@ export const SITE = {
    ====================================================================== */
 
 export const ADMIN = {
-  email: 'dasheaml08@gmail.com',
+  email: 'dashemal08@gmail.com',
   label: 'Owner'
 };
 

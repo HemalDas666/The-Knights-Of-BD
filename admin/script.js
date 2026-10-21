@@ -2,7 +2,7 @@
    OWNER CONSOLE — auth gate, live queues and wallet operations.
    -------------------------------------------------------------------------
    The UI is a convenience layer. Firestore rules are the real lock:
-   only dasheaml08@gmail.com, with a verified email, may read or write.
+   only dashemal08@gmail.com, with a verified email, may read or write.
    ========================================================================= */
 
 import { auth } from '../js/firebase.js';
