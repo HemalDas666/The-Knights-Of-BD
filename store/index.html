@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en" data-base="../" data-page="store">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Store | The Knights Of BD</title>
+  <meta name="description" content="The Knights Of BD store — ranks, coins and money vouchers. All prices in BDT. bKash and Nagad accepted.">
+  <meta name="theme-color" content="#04040b">
+  <meta name="color-scheme" content="dark">
+
+  <link rel="icon" type="image/png" href="../assets/KnightLOGO9.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" referrerpolicy="no-referrer">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/pages.css">
+  <link rel="stylesheet" href="store.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <header class="site-nav" id="siteNav">
+    <div class="nav-inner">
+      <a class="brand" href="../index.html" aria-label="The Knights Of BD — home">
+        <img class="brand__logo" src="../assets/KnightLOGO11.png" alt="" width="38" height="38" decoding="async">
+        <span class="brand__text">THE KNIGHTS<em>OF BD</em></span>
+      </a>
+
+      <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+        <a href="../index.html">Home</a>
+        <a href="../index.html#members">Members</a>
+        <a href="../status/">Status</a>
+        <a href="index.html" class="is-current" aria-current="page">Store</a>
+        <a href="../rules/">Rules</a>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="auth-slot" data-auth-slot>
+          <span class="auth-skeleton" aria-hidden="true"></span>
+
+          <button type="button" class="btn btn-ghost btn-sm" data-auth="guest" data-open-modal="authModal">
+            <i class="fa-solid fa-user"></i><span>Login</span>
+          </button>
+
+          <div class="user-menu" data-auth="user">
+            <button type="button" class="user-chip" id="userChip" aria-haspopup="true" aria-expanded="false">
+              <img data-user-avatar alt="" width="30" height="30" decoding="async">
+              <span data-user-name>Knight</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="user-dropdown" role="menu">
+              <div class="user-dropdown__head">
+                <strong data-user-name>Knight</strong>
+                <span data-user-email>—</span>
+              </div>
+              <a href="../account/" role="menuitem"><i class="fa-solid fa-user"></i> My account</a>
+              <a href="../account/#orders" role="menuitem"><i class="fa-solid fa-receipt"></i> My orders</a>
+              <a href="index.html" role="menuitem"><i class="fa-solid fa-store"></i> Store</a>
+              <button type="button" data-logout role="menuitem" class="is-danger">
+                <i class="fa-solid fa-right-from-bracket"></i> Log out
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false"><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="shell">
+    <header class="page-head">
+      <div class="wrap">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../index.html">Home</a>
+          <i class="fa-solid fa-chevron-right"></i>
+          <span>Store</span>
+        </nav>
+        <h1>Server <span class="gold-text">Store</span></h1>
+        <p>Ranks, coins and money vouchers. Every price is in Bangladeshi Taka (৳) — what you see is what you pay.</p>
+      </div>
+    </header>
+
+    <div class="store-body">
+      <div class="wrap">
+        <!-- Trust strip -->
+        <div class="trust-strip" data-reveal>
+          <div class="trust-cell"><i class="fa-solid fa-shield-halved"></i><div><strong>Manual verification</strong><span>Every order checked by staff</span></div></div>
+          <div class="trust-cell"><i class="fa-solid fa-bolt"></i><div><strong>Fast delivery</strong><span>Usually within minutes</span></div></div>
+          <div class="trust-cell"><i class="fa-solid fa-headset"></i><div><strong>24/7 support</strong><span>Through Discord</span></div></div>
+          <div class="trust-cell"><i class="fa-solid fa-mobile-screen-button"></i><div><strong>bKash &amp; Nagad</strong><span>Local payments only</span></div></div>
+        </div>
+
+        <!-- Currency converter -->
+        <section class="fx-card" data-reveal aria-labelledby="fxTitle">
+          <div>
+            <div class="fx-card__head">
+              <i class="fa-solid fa-arrow-right-arrow-left"></i>
+              <h2 id="fxTitle">Currency converter</h2>
+              <span class="fx-badge" id="fxBadge">Loading…</span>
+            </div>
+            <div class="fx-fields">
+              <label class="field">
+                <span class="field__label">Amount (BDT ৳)</span>
+                <input id="fxAmount" type="number" inputmode="decimal" min="0" step="1" value="500">
+              </label>
+              <label class="field">
+                <span class="field__label">Convert to</span>
+                <select id="fxCurrency">
+                  <option value="USD">USD — US Dollar</option>
+                  <option value="INR">INR — Indian Rupee</option>
+                  <option value="EUR">EUR — Euro</option>
+                  <option value="GBP">GBP — British Pound</option>
+                  <option value="MYR">MYR — Malaysian Ringgit</option>
+                  <option value="SAR">SAR — Saudi Riyal</option>
+                  <option value="AED">AED — UAE Dirham</option>
+                </select>
+              </label>
+            </div>
+            <p class="fx-note">For reference only. Checkout is always charged in BDT (৳).</p>
+          </div>
+
+          <output class="fx-result" for="fxAmount fxCurrency">
+            <span>Estimated value</span>
+            <strong id="fxResult">—</strong>
+          </output>
+        </section>
+
+        <!-- Catalog rendered by store.js from js/config.js -->
+        <div id="storeRoot"></div>
+
+        <p class="fx-note" style="margin-top:28px;">
+          Prices are set in BDT only. Purchases are delivered in-game to the Minecraft IGN on your account.
+          Need help? <a href="https://discord.gg/GU9426EpBM" data-discord target="_blank" rel="noopener" style="color:var(--cyan);">Open a ticket on Discord</a>.
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="../index.html">
+            <img class="brand__logo" src="../assets/KnightLOGO11.png" alt="" width="38" height="38" loading="lazy" decoding="async">
+            <span class="brand__text">THE KNIGHTS<em>OF BD</em></span>
+          </a>
+          <p>Support the server, look good doing it. Every purchase keeps the world online.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Play</h4>
+          <span><i class="fa-solid fa-server"></i> <code data-ip="primary">synapse.veltrionhost.com:25568</code></span>
+          <span><i class="fa-solid fa-server"></i> <code data-ip="alternate">knightsbd.mine.bz:25568</code></span>
+          <a href="../status/"><i class="fa-solid fa-signal"></i> Server status</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>Community</h4>
+          <a href="https://discord.gg/GU9426EpBM" data-discord target="_blank" rel="noopener"><i class="fa-brands fa-discord"></i> Discord server</a>
+          <a href="../rules/"><i class="fa-solid fa-scroll"></i> Rules</a>
+          <a href="../account/"><i class="fa-solid fa-user"></i> My account</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 The Knights Of BD. Not affiliated with Mojang or Microsoft.</span>
+        <span>Built by <span class="highlight">Hemal Das</span></span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================= CHECKOUT MODAL ======================= -->
+  <div class="modal" id="checkoutModal" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle" tabindex="-1">
+    <div class="modal__card">
+      <button type="button" class="modal__close" data-close-modal aria-label="Close">&times;</button>
+      <h2 id="checkoutTitle">Checkout</h2>
+      <p class="section-sub">Pay with bKash or Nagad, then send the transaction ID on Discord.</p>
+
+      <div class="checkout-item" style="margin-top:18px;">
+        <div>
+          <strong id="coName">—</strong>
+          <span>Delivered to <b id="coIgn">—</b></span>
+        </div>
+        <b id="coPrice">৳0</b>
+      </div>
+
+      <p class="section-label"><i class="fa-solid fa-wallet"></i> Choose payment method</p>
+      <div class="pay-methods" id="payMethods"></div>
+      <div id="payPanel" aria-live="polite"></div>
+    </div>
+  </div>
+
+  <!-- ======================= CONFIRMATION MODAL ===================== -->
+  <div class="modal" id="confirmModal" role="dialog" aria-modal="true" aria-labelledby="confirmTitle" tabindex="-1">
+    <div class="modal__card modal__card--small">
+      <button type="button" class="modal__close" data-close-modal aria-label="Close">&times;</button>
+      <div class="confirm-icon"><i class="fa-solid fa-check"></i></div>
+      <h2 class="confirm-title" id="confirmTitle">Order placed</h2>
+      <p class="confirm-sub">Send the transaction ID on Discord and staff will deliver your purchase in-game.</p>
+
+      <div class="confirm-list">
+        <div><span>Order ID</span><code id="cfId">—</code></div>
+        <div><span>Item</span><strong id="cfItem">—</strong></div>
+        <div><span>Amount</span><strong id="cfAmount">—</strong></div>
+        <div><span>Status</span><span class="badge status-pill--pending">Pending</span></div>
+      </div>
+
+      <div class="confirm-actions">
+        <a class="btn btn-primary" href="https://discord.gg/GU9426EpBM" data-discord target="_blank" rel="noopener">
+          <i class="fa-brands fa-discord"></i> Send proof on Discord
+        </a>
+        <button type="button" class="btn btn-ghost" data-close-modal>Done</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

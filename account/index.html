@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en" data-base="../" data-page="account">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>My Account | The Knights Of BD</title>
+  <meta name="description" content="Manage your The Knights Of BD account, Minecraft IGN and orders.">
+  <meta name="theme-color" content="#04040b">
+  <meta name="color-scheme" content="dark">
+  <meta name="robots" content="noindex">
+
+  <link rel="icon" type="image/png" href="../assets/KnightLOGO9.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" referrerpolicy="no-referrer">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/pages.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <header class="site-nav" id="siteNav">
+    <div class="nav-inner">
+      <a class="brand" href="../index.html" aria-label="The Knights Of BD — home">
+        <img class="brand__logo" src="../assets/KnightLOGO11.png" alt="" width="38" height="38" decoding="async">
+        <span class="brand__text">THE KNIGHTS<em>OF BD</em></span>
+      </a>
+
+      <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+        <a href="../index.html">Home</a>
+        <a href="../index.html#members">Members</a>
+        <a href="../status/">Status</a>
+        <a href="../store/">Store</a>
+        <a href="../rules/">Rules</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a class="btn btn-primary btn-sm btn-store" href="../store/">Store</a>
+
+        <div class="auth-slot" data-auth-slot>
+          <span class="auth-skeleton" aria-hidden="true"></span>
+
+          <button type="button" class="btn btn-ghost btn-sm" data-auth="guest" data-open-modal="authModal">
+            <i class="fa-solid fa-user"></i><span>Login</span>
+          </button>
+
+          <div class="user-menu" data-auth="user">
+            <button type="button" class="user-chip" id="userChip" aria-haspopup="true" aria-expanded="false">
+              <img data-user-avatar alt="" width="30" height="30" decoding="async">
+              <span data-user-name>Knight</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="user-dropdown" role="menu">
+              <div class="user-dropdown__head">
+                <strong data-user-name>Knight</strong>
+                <span data-user-email>—</span>
+              </div>
+              <a href="index.html" role="menuitem"><i class="fa-solid fa-user"></i> My account</a>
+              <a href="#orders" role="menuitem"><i class="fa-solid fa-receipt"></i> My orders</a>
+              <a href="../store/" role="menuitem"><i class="fa-solid fa-store"></i> Store</a>
+              <button type="button" data-logout role="menuitem" class="is-danger">
+                <i class="fa-solid fa-right-from-bracket"></i> Log out
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false"><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="shell">
+    <header class="page-head">
+      <div class="wrap">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../index.html">Home</a>
+          <i class="fa-solid fa-chevron-right"></i>
+          <span>My account</span>
+        </nav>
+        <h1>My <span class="gradient-text">account</span></h1>
+        <p>Your profile, Minecraft link and every order you have placed.</p>
+      </div>
+    </header>
+
+    <div class="page-body">
+      <div class="wrap">
+
+        <!-- Loading -->
+        <div class="panel" id="accountLoading">
+          <div class="panel__body" style="display:grid;gap:12px;">
+            <span class="auth-skeleton" style="width:180px;height:20px;"></span>
+            <span class="auth-skeleton" style="width:100%;height:52px;"></span>
+            <span class="auth-skeleton" style="width:70%;height:52px;"></span>
+          </div>
+        </div>
+
+        <!-- Guest -->
+        <section class="panel" id="guestView" hidden>
+          <div class="panel__body">
+            <div class="empty-state">
+              <i class="fa-solid fa-user-lock"></i>
+              <h3>You are not logged in</h3>
+              <p>Log in or create an account to see your orders and sync your Minecraft IGN.</p>
+              <div style="margin-top:18px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+                <button type="button" class="btn btn-primary" data-open-modal="authModal">
+                  <i class="fa-solid fa-right-to-bracket"></i> Login
+                </button>
+                <a class="btn btn-ghost" href="../store/">
+                  <i class="fa-solid fa-store"></i> Browse store
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Logged in -->
+        <div id="userView" hidden>
+          <div class="verify-banner" id="verifyBanner" hidden>
+            <i class="fa-solid fa-envelope-circle-check"></i>
+            <div>
+              <h3 id="verifyTitle">Verify your email</h3>
+              <p id="verifyText">Confirm your address so staff can reach you about orders.</p>
+              <div class="verify-actions" style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;">
+                <button type="button" class="btn btn-ghost btn-sm" id="resendVerifyBtn">
+                  <i class="fa-solid fa-paper-plane"></i> Resend email
+                </button>
+                <button type="button" class="btn btn-ghost btn-sm" id="checkVerifyBtn">
+                  <i class="fa-solid fa-rotate"></i> I've verified
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="account-grid">
+            <!-- Profile summary -->
+            <aside class="profile-card">
+              <img class="profile-avatar" id="acAvatar" alt="" width="92" height="92" decoding="async">
+              <h2 id="acName">Knight</h2>
+              <p class="profile-mail" id="acEmail">—</p>
+
+              <div class="profile-tags">
+                <span class="badge badge--cyan" id="acRank">Member</span>
+                <span class="badge badge--muted" id="acVerifiedBadge">Unverified</span>
+              </div>
+
+              <div class="profile-facts">
+                <div><span>Minecraft IGN</span><strong id="acIgn">—</strong></div>
+                <div><span>Member since</span><strong id="acSince">—</strong></div>
+                <div><span>Total orders</span><strong id="acOrders">0</strong></div>
+              </div>
+
+              <button type="button" class="btn btn-danger btn-block" data-logout style="margin-top:20px;">
+                <i class="fa-solid fa-right-from-bracket"></i> Log out
+              </button>
+            </aside>
+
+            <div>
+              <!-- Profile form -->
+              <section class="panel">
+                <div class="panel__head">
+                  <h2><i class="fa-solid fa-id-card"></i> Profile details</h2>
+                </div>
+                <div class="panel__body">
+                  <form class="form-stack" id="profileForm" novalidate>
+                    <div class="field-row">
+                      <label class="field">
+                        <span class="field__label">Username</span>
+                        <input type="text" name="username" autocomplete="nickname" maxlength="20" required>
+                      </label>
+                      <label class="field">
+                        <span class="field__label">Minecraft IGN</span>
+                        <input type="text" name="ign" autocomplete="off" maxlength="16" required>
+                      </label>
+                    </div>
+                    <p class="form-hint">Your IGN is where store purchases are delivered. Use your exact Java username — ranks cannot be moved after delivery.</p>
+                    <button type="submit" class="btn btn-primary">
+                      <span class="btn__label">Save changes</span>
+                      <span class="btn__spinner" aria-hidden="true"></span>
+                    </button>
+                  </form>
+                </div>
+              </section>
+
+              <!-- Security -->
+              <section class="panel">
+                <div class="panel__head">
+                  <h2><i class="fa-solid fa-lock"></i> Security</h2>
+                </div>
+                <div class="panel__body">
+                  <p class="form-hint">We can email you a secure link to choose a new password. Your current password is never shown to us.</p>
+                  <button type="button" class="btn btn-ghost" id="resetPasswordBtn" style="margin-top:12px;">
+                    <i class="fa-solid fa-envelope"></i> Send password reset email
+                  </button>
+                </div>
+              </section>
+
+              <!-- Orders -->
+              <section class="panel" id="orders">
+                <div class="panel__head">
+                  <h2><i class="fa-solid fa-receipt"></i> My orders</h2>
+                  <span class="badge badge--muted" id="ordersCount">0</span>
+                </div>
+                <div class="panel__body">
+                  <div class="session-note" id="cloudNote">
+                    <i class="fa-solid fa-cloud"></i>
+                    <span>Cloud sync active</span>
+                  </div>
+                  <div class="orders-list" id="ordersList" style="margin-top:14px;">
+                    <p class="form-hint">Loading orders…</p>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="../index.html">
+            <img class="brand__logo" src="../assets/KnightLOGO11.png" alt="" width="38" height="38" loading="lazy" decoding="async">
+            <span class="brand__text">THE KNIGHTS<em>OF BD</em></span>
+          </a>
+          <p>Your account, your orders, your world.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Play</h4>
+          <span><i class="fa-solid fa-server"></i> <code data-ip="primary">synapse.veltrionhost.com:25568</code></span>
+          <span><i class="fa-solid fa-server"></i> <code data-ip="alternate">knightsbd.mine.bz:25568</code></span>
+          <a href="../status/"><i class="fa-solid fa-signal"></i> Server status</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>Community</h4>
+          <a href="https://discord.gg/GU9426EpBM" data-discord target="_blank" rel="noopener"><i class="fa-brands fa-discord"></i> Discord server</a>
+          <a href="../store/"><i class="fa-solid fa-store"></i> Store</a>
+          <a href="../rules/"><i class="fa-solid fa-scroll"></i> Rules</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 The Knights Of BD. Not affiliated with Mojang or Microsoft.</span>
+        <span>Built by <span class="highlight">Hemal Das</span></span>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

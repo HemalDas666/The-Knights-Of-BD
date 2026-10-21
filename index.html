@@ -1,209 +1,357 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-base="" data-page="home">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="description" content="The Knight's OF BD - Premium Minecraft Gaming Server">
-    <meta name="theme-color" content="#0a0a1a">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>The Knight's OF BD | Minecraft Server</title>
-    <link rel="icon" type="image/x-icon" href="assets/KnightLOGO9.png">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>The Knights Of BD | Minecraft Server</title>
+  <meta name="description" content="The Knights Of BD — a premium Java Minecraft survival server. Live status, player count, ranks and store. Java 1.8 – 1.21.x.">
+  <meta name="theme-color" content="#04040b">
+  <meta name="color-scheme" content="dark">
+  <meta property="og:title" content="The Knights Of BD | Minecraft Server">
+  <meta property="og:description" content="Claim glory. Steal hearts. Survive the void. Join The Knights Of BD.">
+  <meta property="og:type" content="website">
+
+  <link rel="icon" type="image/png" href="assets/KnightLOGO9.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" referrerpolicy="no-referrer">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/home.css">
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-    <!-- Loading Screen -->
-    <div class="loading-screen" id="loadingScreen">
-        <div class="loader">
-            <div class="sword">
-                <div class="blade"></div>
-                <div class="hilt"></div>
+  <canvas id="bgCanvas" aria-hidden="true"></canvas>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <!-- ============================ NAVBAR ============================ -->
+  <header class="site-nav" id="siteNav">
+    <div class="nav-inner">
+      <a class="brand" href="index.html" aria-label="The Knights Of BD — home">
+        <img class="brand__logo" src="assets/KnightLOGO11.png" alt="" width="38" height="38" decoding="async">
+        <span class="brand__text">THE KNIGHTS<em>OF BD</em></span>
+      </a>
+
+      <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+        <a href="index.html" class="is-current" aria-current="page">Home</a>
+        <a href="#members">Members</a>
+        <a href="status/">Status</a>
+        <a href="store/">Store</a>
+        <a href="rules/">Rules</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a class="btn btn-primary btn-sm btn-store" href="store/">Store</a>
+
+        <div class="auth-slot" data-auth-slot>
+          <span class="auth-skeleton" aria-hidden="true"></span>
+
+          <button type="button" class="btn btn-ghost btn-sm" data-auth="guest" data-open-modal="authModal">
+            <i class="fa-solid fa-user"></i><span>Login</span>
+          </button>
+
+          <div class="user-menu" data-auth="user">
+            <button type="button" class="user-chip" id="userChip" aria-haspopup="true" aria-expanded="false">
+              <img data-user-avatar alt="" width="30" height="30" decoding="async">
+              <span data-user-name>Knight</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="user-dropdown" role="menu">
+              <div class="user-dropdown__head">
+                <strong data-user-name>Knight</strong>
+                <span data-user-email>—</span>
+              </div>
+              <a href="account/" role="menuitem"><i class="fa-solid fa-user"></i> My account</a>
+              <a href="account/#orders" role="menuitem"><i class="fa-solid fa-receipt"></i> My orders</a>
+              <a href="store/" role="menuitem"><i class="fa-solid fa-store"></i> Store</a>
+              <button type="button" data-logout role="menuitem" class="is-danger">
+                <i class="fa-solid fa-right-from-bracket"></i> Log out
+              </button>
             </div>
-            <p>Loading The Knight's OF BD...</p>
+          </div>
         </div>
+
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false"><span></span></button>
+      </div>
     </div>
+  </header>
 
-    <!-- Floating Copy Button - Top Left Corner -->
-    <button class="floating-copy-btn" id="floatingCopyBtn">
-        <i class="fas fa-copy"></i>
-        <span>Click to Copy IP</span>
-    </button>
+  <main id="main" class="shell">
+    <!-- ============================= HERO ============================ -->
+    <section class="hero" id="home">
+      <div class="wrap hero-grid">
+        <div class="hero-copy" data-reveal>
+          <span class="eyebrow">Java Edition · Season 1</span>
+          <h1>
+            <span class="line gradient-text">THE KNIGHTS</span>
+            <span class="line outline">OF BD</span>
+          </h1>
+          <p class="hero-tagline">
+            Claim glory. Steal hearts. Survive the void. A premium survival experience
+            with custom ranks, events and a community that actually plays together.
+          </p>
 
-    <!-- Simple Header - Only Logo + Name (No Nav Bar) -->
-    <header class="simple-header">
-        <div class="header-container">
-            <img src="assets/KnightLOGO11.png" alt="The Knight's OF BD Logo" class="site-logo">
-            <h1 class="site-title">THE KNIGHT'S OF BD</h1>
-        </div>
-    </header>
+          <div class="hero-actions">
+            <button class="btn btn-primary btn-lg" data-ip="primary" data-copy>
+              <i class="fa-solid fa-play"></i> Play now
+            </button>
+            <a class="btn btn-ghost btn-lg" href="https://discord.gg/GU9426EpBM" data-discord target="_blank" rel="noopener">
+              <i class="fa-brands fa-discord"></i> Join Discord
+            </a>
+            <button class="btn btn-ghost btn-lg" data-open-modal="connectModal">
+              <i class="fa-solid fa-circle-question"></i> How to join
+            </button>
+          </div>
 
-    <!-- Hero Section -->
-    <main class="hero-section">
-        <div class="hero-content">
-            <div class="hero-text">
-                <h2 class="main-title">
-                    <span class="title-gradient">Welcome To</span>
-                    <span class="title-outline">THE KNIGHT'S OF BD</span>
-                </h2>
-                <p class="tagline">Your Ultimate Premium Minecraft Gaming Experience</p>
-                
-                <div class="server-stats">
-                    <div class="stat">
-                        <i class="fas fa-users"></i>
-                        <span>100+ Player Slots</span>
-                    </div>
-                    <div class="stat">
-                        <i class="fas fa-server"></i>
-                        <span>99.9% Uptime</span>
-                    </div>
-                    <div class="stat">
-                        <i class="fas fa-bolt"></i>
-                        <span>Zero Lag</span>
-                    </div>
-                </div>
+          <div class="hero-ip">
+            <span>Server IP</span>
+            <div class="ip-box">
+              <code data-ip="primary">synapse.veltrionhost.com:25568</code>
+              <button type="button" class="ip-box__copy" data-ip="primary" data-copy>
+                <i class="fa-regular fa-copy"></i> Copy
+              </button>
             </div>
-            
-            <div class="hero-actions">
-                <button class="btn-primary" id="copyIpBtn">
-                    <i class="fas fa-copy"></i> Copy Server IP
-                </button>
-                <button class="btn-secondary" id="discordBtn">
-                    <i class="fab fa-discord"></i> Join Discord
-                </button>
-            </div>
-        </div>
-    </main>
+          </div>
 
-    <!-- Special Members Section -->
-    <section class="members-section">
-        <h2 class="section-title">👑 Server Legends 👑</h2>
+          <div class="hero-badges">
+            <span class="chip"><i class="fa-solid fa-shield-halved"></i> Anti-cheat</span>
+            <span class="chip"><i class="fa-solid fa-clock-rotate-left"></i> Daily backups</span>
+            <span class="chip"><i class="fa-solid fa-bolt"></i> 24/7 hosted</span>
+            <span class="chip"><i class="fa-solid fa-code-branch"></i> 1.8 – 1.21.x</span>
+          </div>
+        </div>
+
+        <!-- LIVE STATUS -->
+        <article class="status-card is-loading" data-status data-status-host="synapse.veltrionhost.com" data-status-port="25568" data-reveal>
+          <div class="status-card__top">
+            <div class="status-server">
+              <img class="status-server__icon" data-status-icon alt="" width="50" height="50" hidden decoding="async">
+              <div>
+                <p class="status-kicker">Live server</p>
+                <h2 class="status-name">The Knights Of BD</h2>
+              </div>
+            </div>
+            <span class="status-pill" data-status-pill>
+              <span class="status-pill__dot"></span>
+              <span data-status-label>Checking…</span>
+            </span>
+          </div>
+
+          <div class="status-body">
+            <div class="status-players">
+              <strong data-status-online>—</strong>
+              <span>/ <span data-status-max>—</span> players online</span>
+            </div>
+            <div class="status-bar" role="presentation"><span class="status-bar__fill" data-status-bar></span></div>
+          </div>
+
+          <dl class="status-meta">
+            <div><dt>Version</dt><dd data-status-version>—</dd></div>
+            <div><dt>Region</dt><dd>Asia</dd></div>
+            <div><dt>Updated</dt><dd data-status-updated>—</dd></div>
+          </dl>
+
+          <p class="status-motd" data-status-motd hidden></p>
+
+          <div class="status-actions">
+            <button type="button" class="btn btn-primary btn-sm" data-ip="primary" data-copy>
+              <i class="fa-regular fa-copy"></i> Copy IP
+            </button>
+            <button type="button" class="btn btn-ghost btn-sm" data-status-refresh>
+              <i class="fa-solid fa-rotate"></i> Refresh
+            </button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============================ STATS =========================== -->
+    <section class="section--tight">
+      <div class="wrap">
+        <div class="stats-strip" data-reveal>
+          <div class="stat-cell"><i class="fa-solid fa-users"></i><strong>50</strong><span>Player slots</span></div>
+          <div class="stat-cell"><i class="fa-solid fa-cube"></i><strong>Paper 1.21.11</strong><span>Server software</span></div>
+          <div class="stat-cell"><i class="fa-brands fa-java"></i><strong>Java Edition</strong><span>1.8 – 1.21.x</span></div>
+          <div class="stat-cell"><i class="fa-solid fa-headset"></i><strong>24/7</strong><span>Staff &amp; support</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================== MEMBERS ========================== -->
+    <section class="section" id="members">
+      <div class="wrap">
+        <div class="section-head section-head--center" data-reveal>
+          <span class="eyebrow">The people behind the world</span>
+          <h2 class="section-title">Server <span class="gold-text">Legends</span></h2>
+          <p class="section-sub">The crew that keeps the realm running, the events flowing and the griefers banned.</p>
+        </div>
+
         <div class="members-grid">
-            <div class="member-card owner">
-                <div class="member-icon">
-                    <i class="fas fa-crown"></i>
-                </div>
-                <h3>Owner</h3>
-                <p class="member-name">Ahmad</p>
-                <p class="member-ign">⚡ In Game Name: <span>Slighter</span></p>
-                <span class="member-badge">👑 Supreme Leader</span>
-            </div>
-            
-            <div class="member-card coowner">
-                <div class="member-icon">
-                    <i class="fas fa-star"></i>
-                </div>
-                <h3>Co-Owner</h3>
-                <p class="member-name">Ahmad </p>
-                <p class="member-ign">⭐ In Game Name: <span>Slighter</span></p>
-                <span class="member-badge">⚡ Right Hand</span>
-            </div>
-            
-            <div class="member-card knight">
-                <div class="member-icon">
-                    <i class="fas fa-shield-alt"></i>
-                </div>
-                <h3>First Knight</h3>
-                <p class="member-name">Hana</p>
-                <p class="member-ign">⚔️ In Game Name: <span>NotJelly</span></p>
-                <span class="member-badge">🌟 The First Knight</span>
-            </div>
+          <article class="member-card member-card--owner" data-reveal>
+            <div class="member-card__icon"><i class="fa-solid fa-crown"></i></div>
+            <h3>Owner</h3>
+            <p class="member-card__name">Ahmad</p>
+            <p class="member-card__ign">IGN: <span>Slighter</span></p>
+            <span class="badge">Supreme Leader</span>
+          </article>
+
+          <article class="member-card member-card--coowner" data-reveal>
+            <div class="member-card__icon"><i class="fa-solid fa-star"></i></div>
+            <h3>Co-Owner</h3>
+            <p class="member-card__name">Devanshu</p>
+            <p class="member-card__ign">IGN: <span>Devanshu</span></p>
+            <span class="badge">Right Hand</span>
+          </article>
+
+          <article class="member-card member-card--knight" data-reveal>
+            <div class="member-card__icon"><i class="fa-solid fa-shield-halved"></i></div>
+            <h3>First Knight</h3>
+            <p class="member-card__name">Hana</p>
+            <p class="member-card__ign">IGN: <span>NotJelly</span></p>
+            <span class="badge">The First Knight</span>
+          </article>
         </div>
+      </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="features-section" id="features">
-        <h2 class="section-title">Server Features</h2>
+    <!-- =========================== FEATURES ========================= -->
+    <section class="section" id="features">
+      <div class="wrap">
+        <div class="section-head" data-reveal>
+          <span class="eyebrow">Why players stay</span>
+          <h2 class="section-title">Built for <span class="gradient-text">real players</span></h2>
+          <p class="section-sub">No pay-to-win nonsense. No lag spikes. Just a world worth logging into.</p>
+        </div>
+
         <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-shield-alt"></i>
-                </div>
-                <h3>Anti-Cheat System</h3>
-                <p>Advanced protection ensuring fair gameplay for all players</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-database"></i>
-                </div>
-                <h3>Daily Backups</h3>
-                <p>Your progress is safe with automated daily backups</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-mobile-alt"></i>
-                </div>
-                <h3>Cross-Platform</h3>
-                <p>Play on Java, Bedrock, or any compatible client</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-heart"></i>
-                </div>
-                <h3>Active Community</h3>
-                <p>Join thousands of friendly players worldwide</p>
-            </div>
+          <article class="feature-card" data-reveal>
+            <div class="feature-card__icon"><i class="fa-solid fa-shield-halved"></i></div>
+            <h3>Anti-Cheat</h3>
+            <p>Active protection and staff review keep every fight fair.</p>
+          </article>
+          <article class="feature-card" data-reveal>
+            <div class="feature-card__icon"><i class="fa-solid fa-database"></i></div>
+            <h3>Daily Backups</h3>
+            <p>Your builds and progress are backed up automatically, every day.</p>
+          </article>
+          <article class="feature-card" data-reveal>
+            <div class="feature-card__icon"><i class="fa-solid fa-gauge-high"></i></div>
+            <h3>Zero Lag</h3>
+            <p>Paid 24/7 hosting on modern hardware with a stable tick rate.</p>
+          </article>
+          <article class="feature-card" data-reveal>
+            <div class="feature-card__icon"><i class="fa-solid fa-heart"></i></div>
+            <h3>Active Community</h3>
+            <p>Events, Discord nights and a player base that actually talks.</p>
+          </article>
         </div>
+      </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-info">
-                <p class="server-ip-footer">💻 Java IP: theknightsofbd.mcsh.io:25565</p>
-                <p class="server-ip-footer">📱 Bedrock Ports: 19132 | 11772</p>
-            </div>
-            <div class="footer-credit">
-                <p><i class="fas fa-code"></i> Made by <span class="highlight">Hemal Das</span></p>
-                <p>&copy; 2026 The Knight's OF BD. All rights reserved.</p>
-            </div>
+    <!-- ============================ STORE CTA ======================= -->
+    <section class="section--tight">
+      <div class="wrap">
+        <div class="cta-banner" data-reveal>
+          <div>
+            <span class="eyebrow">Support the server</span>
+            <h2>Grab a rank. Skip the queue.</h2>
+            <p>Ranks, coins and money vouchers are delivered by staff after payment. Every purchase keeps the server online and the events coming.</p>
+            <div class="cta-price"><strong data-rank-from>৳150</strong><span>starting rank price</span></div>
+          </div>
+          <div class="cta-banner__actions">
+            <a class="btn btn-gold btn-lg" href="store/"><i class="fa-solid fa-store"></i> Open store</a>
+            <a class="btn btn-ghost btn-lg" href="rules/"><i class="fa-solid fa-scroll"></i> Read rules</a>
+          </div>
         </div>
-    </footer>
+      </div>
+    </section>
+  </main>
 
-    <!-- Server IP Modal -->
-    <div class="modal" id="ipModal">
-        <div class="modal-content">
-            <button class="close-modal">&times;</button>
-            <h2><i class="fas fa-server"></i> Server Connection</h2>
-            
-            <div class="ip-section">
-                <h3><i class="fab fa-java"></i> Java Edition</h3>
-                <div class="ip-container">
-                    <code class="server-ip">theknightsofbd.mcsh.io:25565</code>
-                    <button class="copy-btn" data-ip="theknightsofbd.mcsh.io:25565">
-                        <i class="fas fa-copy"></i> Copy
-                    </button>
-                </div>
-            </div>
-            
-            <div class="ip-section">
-                <h3><i class="fas fa-mobile-alt"></i> Bedrock Edition</h3>
-                <div class="ip-container">
-                    <code class="server-ip">theknightsofbd.mcsh.io</code>
-                    <button class="copy-btn" data-ip="theknightsofbd.mcsh.io">
-                        <i class="fas fa-copy"></i> Copy IP
-                    </button>
-                </div>
-                <div class="port-info">
-                    <p><strong>Ports:</strong> 19132 or 11772</p>
-                </div>
-            </div>
-            
-            <div class="version-info">
-                <p><i class="fas fa-code-branch"></i> <strong>Supported Versions:</strong> 1.8 - 1.21.x</p>
-            </div>
+  <!-- ============================ FOOTER ============================ -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="index.html">
+            <img class="brand__logo" src="assets/KnightLOGO11.png" alt="" width="38" height="38" loading="lazy" decoding="async">
+            <span class="brand__text">THE KNIGHTS<em>OF BD</em></span>
+          </a>
+          <p>A Java Minecraft survival server built with friends, for friends. Claim glory. Steal hearts. Survive the void.</p>
         </div>
+
+        <div class="footer-col">
+          <h4>Play</h4>
+          <span><i class="fa-solid fa-server"></i> <code data-ip="primary">synapse.veltrionhost.com:25568</code></span>
+          <span><i class="fa-solid fa-server"></i> <code data-ip="alternate">knightsbd.mine.bz:25568</code></span>
+          <a href="status/"><i class="fa-solid fa-signal"></i> Server status</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>Community</h4>
+          <a href="https://discord.gg/GU9426EpBM" data-discord target="_blank" rel="noopener"><i class="fa-brands fa-discord"></i> Discord server</a>
+          <a href="store/"><i class="fa-solid fa-store"></i> Store</a>
+          <a href="rules/"><i class="fa-solid fa-scroll"></i> Rules</a>
+          <a href="account/"><i class="fa-solid fa-user"></i> My account</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 The Knights Of BD. Not affiliated with Mojang or Microsoft.</span>
+        <span>Built by <span class="highlight">Hemal Das</span></span>
+      </div>
     </div>
+  </footer>
 
-    <!-- Notification Container -->
-    <div class="notification-container" id="notificationContainer"></div>
+  <!-- ======================= CONNECTION MODAL ======================= -->
+  <div class="modal" id="connectModal" role="dialog" aria-modal="true" aria-labelledby="connectTitle" tabindex="-1">
+    <div class="modal__card">
+      <button type="button" class="modal__close" data-close-modal aria-label="Close">&times;</button>
+      <h2 id="connectTitle">Connect to the server</h2>
+      <p class="section-sub">Java Edition only. Both addresses point to the same world — use whichever is fastest for you.</p>
 
-    <!-- Back to Top Button -->
-    <button class="back-to-top" id="backToTop">
-        <i class="fas fa-arrow-up"></i>
-    </button>
+      <div class="ip-list">
+        <div class="ip-row">
+          <div class="ip-row__head">
+            <h3>Primary address</h3>
+            <span class="badge badge--green">Recommended</span>
+          </div>
+          <div class="ip-row__value">
+            <code data-ip="primary">synapse.veltrionhost.com:25568</code>
+            <button type="button" class="btn btn-ghost btn-sm" data-ip="primary" data-copy>
+              <i class="fa-regular fa-copy"></i> Copy
+            </button>
+          </div>
+        </div>
 
-    <script src="script.js"></script>
+        <div class="ip-row">
+          <div class="ip-row__head">
+            <h3>Alternate address</h3>
+            <span class="badge badge--muted">Backup</span>
+          </div>
+          <div class="ip-row__value">
+            <code data-ip="alternate">knightsbd.mine.bz:25568</code>
+            <button type="button" class="btn btn-ghost btn-sm" data-ip="alternate" data-copy>
+              <i class="fa-regular fa-copy"></i> Copy
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="ip-note">
+        <i class="fa-solid fa-circle-info"></i>
+        Open Minecraft → <strong>Multiplayer</strong> → <strong>Add Server</strong>, paste the address and join.
+        Use version 1.8 – 1.21.x. If one address fails, try the other.
+      </div>
+
+      <div class="versions">
+        <i class="fa-solid fa-code-branch"></i>
+        Paper 1.21.11 · Java Edition · 50 slots · Asia
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="js/home.js"></script>
 </body>
 </html>

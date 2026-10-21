@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en" data-base="../" data-page="rules">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Rules | The Knights Of BD</title>
+  <meta name="description" content="The Knights Of BD server rules, punishments and store policy.">
+  <meta name="theme-color" content="#04040b">
+  <meta name="color-scheme" content="dark">
+
+  <link rel="icon" type="image/png" href="../assets/KnightLOGO9.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" referrerpolicy="no-referrer">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/pages.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <header class="site-nav" id="siteNav">
+    <div class="nav-inner">
+      <a class="brand" href="../index.html" aria-label="The Knights Of BD — home">
+        <img class="brand__logo" src="../assets/KnightLOGO11.png" alt="" width="38" height="38" decoding="async">
+        <span class="brand__text">THE KNIGHTS<em>OF BD</em></span>
+      </a>
+
+      <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+        <a href="../index.html">Home</a>
+        <a href="../index.html#members">Members</a>
+        <a href="../status/">Status</a>
+        <a href="../store/">Store</a>
+        <a href="index.html" class="is-current" aria-current="page">Rules</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a class="btn btn-primary btn-sm btn-store" href="../store/">Store</a>
+
+        <div class="auth-slot" data-auth-slot>
+          <span class="auth-skeleton" aria-hidden="true"></span>
+
+          <button type="button" class="btn btn-ghost btn-sm" data-auth="guest" data-open-modal="authModal">
+            <i class="fa-solid fa-user"></i><span>Login</span>
+          </button>
+
+          <div class="user-menu" data-auth="user">
+            <button type="button" class="user-chip" id="userChip" aria-haspopup="true" aria-expanded="false">
+              <img data-user-avatar alt="" width="30" height="30" decoding="async">
+              <span data-user-name>Knight</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="user-dropdown" role="menu">
+              <div class="user-dropdown__head">
+                <strong data-user-name>Knight</strong>
+                <span data-user-email>—</span>
+              </div>
+              <a href="../account/" role="menuitem"><i class="fa-solid fa-user"></i> My account</a>
+              <a href="../account/#orders" role="menuitem"><i class="fa-solid fa-receipt"></i> My orders</a>
+              <a href="../store/" role="menuitem"><i class="fa-solid fa-store"></i> Store</a>
+              <button type="button" data-logout role="menuitem" class="is-danger">
+                <i class="fa-solid fa-right-from-bracket"></i> Log out
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false"><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="shell">
+    <header class="page-head">
+      <div class="wrap">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../index.html">Home</a>
+          <i class="fa-solid fa-chevron-right"></i>
+          <span>Rules</span>
+        </nav>
+        <h1>Server <span class="gold-text">rules</span></h1>
+        <p>Short version: don't ruin someone else's game. The long version is below — by joining the server you agree to all of it.</p>
+      </div>
+    </header>
+
+    <div class="page-body">
+      <div class="wrap">
+        <div style="display:grid;grid-template-columns:minmax(0,1fr);gap:24px;max-width:900px;">
+
+          <section class="rule-block">
+            <h3><i class="fa-solid fa-handshake"></i> 1. Respect every player</h3>
+            <p>Trash talk in PvP is fine. Hate is not.</p>
+            <ul>
+              <li>No racism, sexism, homophobia or slurs of any kind.</li>
+              <li>No targeted harassment, doxxing or threats.</li>
+              <li>No spamming chat, caps flooding or microphone abuse.</li>
+            </ul>
+          </section>
+
+          <section class="rule-block">
+            <h3><i class="fa-solid fa-shield-halved"></i> 2. No cheating or unfair advantage</h3>
+            <p>Anything that plays the game for you is a ban.</p>
+            <ul>
+              <li>No X-ray, fly, reach, kill aura, auto-clickers or macros.</li>
+              <li>No exploiting bugs, duplication glitches or chunk resets.</li>
+              <li>Found a bug? Report it in Discord — reporting is rewarded, abusing is punished.</li>
+            </ul>
+          </section>
+
+          <section class="rule-block">
+            <h3><i class="fa-solid fa-house-crack"></i> 3. Griefing and stealing</h3>
+            <p>Survival is dangerous — but some places are off limits.</p>
+            <ul>
+              <li>Spawn, hubs, event arenas and claimed land are fully protected.</li>
+              <li>Destroying builds outside PvP areas is not allowed.</li>
+              <li>Stealing from unclaimed land is part of survival — claim your base.</li>
+            </ul>
+          </section>
+
+          <section class="rule-block">
+            <h3><i class="fa-solid fa-user-secret"></i> 4. One account, one player</h3>
+            <ul>
+              <li>No alt accounts to bypass a ban, mute or cooldown.</li>
+              <li>No ban evasion through friends' accounts.</li>
+              <li>Sharing an account is your own risk — staff will not restore lost items.</li>
+            </ul>
+          </section>
+
+          <section class="rule-block">
+            <h3><i class="fa-solid fa-bullhorn"></i> 5. No advertising</h3>
+            <ul>
+              <li>No advertising other servers, Discords or services in chat.</li>
+              <li>No links to scams, phishing sites or key generators.</li>
+            </ul>
+          </section>
+
+          <section class="rule-block">
+            <h3><i class="fa-solid fa-gauge-high"></i> 6. Don't lag the server</h3>
+            <ul>
+              <li>No lag machines, redstone clocks, mob cramming or chunk loaders.</li>
+              <li>Keep entity counts reasonable — staff may remove builds that hurt performance.</li>
+            </ul>
+          </section>
+
+          <section class="rule-block">
+            <h3><i class="fa-solid fa-gavel"></i> 7. Staff have the final say</h3>
+            <p>If a staff member asks you to stop, stop. Argue in a Discord ticket, not in chat.</p>
+            <ul>
+              <li>Impersonating staff is an instant ban.</li>
+              <li>False reports waste everyone's time and can be punished.</li>
+            </ul>
+          </section>
+
+          <section class="panel">
+            <div class="panel__head">
+              <h2><i class="fa-solid fa-scale-balanced"></i> Punishment guide</h2>
+            </div>
+            <div class="panel__body">
+              <table class="punish-table">
+                <thead>
+                  <tr><th>Offence</th><th>First time</th><th>Repeat</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>Chat spam / minor disrespect</td><td>Warning</td><td>1–24h mute</td></tr>
+                  <tr><td>Griefing / stealing from claims</td><td>7d ban + rollback</td><td>Permanent ban</td></tr>
+                  <tr><td>Cheating / exploits</td><td>30d ban + wipe</td><td>Permanent ban</td></tr>
+                  <tr><td>Scamming / real-money trading</td><td>Permanent ban</td><td>—</td></tr>
+                  <tr><td>Hate speech / threats</td><td>Permanent ban</td><td>—</td></tr>
+                </tbody>
+              </table>
+              <p class="form-hint" style="margin-top:14px;">Staff may adjust punishments depending on severity and history.</p>
+            </div>
+          </section>
+
+          <section class="panel">
+            <div class="panel__head">
+              <h2><i class="fa-solid fa-store"></i> Store &amp; purchase policy</h2>
+            </div>
+            <div class="panel__body">
+              <div class="prose">
+                <ul>
+                  <li>All prices are charged in <strong>BDT (৳)</strong> only.</li>
+                  <li>Purchases are delivered in-game to the Minecraft IGN saved on your account. Double-check it before buying.</li>
+                  <li>Ranks sent to the wrong IGN cannot be moved or refunded.</li>
+                  <li>Delivery is manual — usually within minutes, but allow up to 24 hours during busy periods.</li>
+                  <li>Chargebacks and payment fraud result in a permanent ban and rank removal.</li>
+                  <li>Bought the wrong item? Open a Discord ticket within 24 hours and staff will help if it has not been delivered.</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <div class="ip-note">
+            <i class="fa-solid fa-circle-info"></i>
+            Questions about a rule? Open a ticket in the
+            <a href="https://discord.gg/GU9426EpBM" data-discord target="_blank" rel="noopener" style="color:var(--cyan);">Discord server</a>
+            before you act, not after.
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="../index.html">
+            <img class="brand__logo" src="../assets/KnightLOGO11.png" alt="" width="38" height="38" loading="lazy" decoding="async">
+            <span class="brand__text">THE KNIGHTS<em>OF BD</em></span>
+          </a>
+          <p>Fair play, good company, long-term worlds.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Play</h4>
+          <span><i class="fa-solid fa-server"></i> <code data-ip="primary">synapse.veltrionhost.com:25568</code></span>
+          <span><i class="fa-solid fa-server"></i> <code data-ip="alternate">knightsbd.mine.bz:25568</code></span>
+          <a href="../status/"><i class="fa-solid fa-signal"></i> Server status</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>Community</h4>
+          <a href="https://discord.gg/GU9426EpBM" data-discord target="_blank" rel="noopener"><i class="fa-brands fa-discord"></i> Discord server</a>
+          <a href="../store/"><i class="fa-solid fa-store"></i> Store</a>
+          <a href="../account/"><i class="fa-solid fa-user"></i> My account</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 The Knights Of BD. Not affiliated with Mojang or Microsoft.</span>
+        <span>Built by <span class="highlight">Hemal Das</span></span>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

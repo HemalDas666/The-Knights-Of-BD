@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en" data-base="../" data-page="status">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Server Status | The Knights Of BD</title>
+  <meta name="description" content="Live status, player count and version for The Knights Of BD Minecraft server.">
+  <meta name="theme-color" content="#04040b">
+  <meta name="color-scheme" content="dark">
+
+  <link rel="icon" type="image/png" href="../assets/KnightLOGO9.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" referrerpolicy="no-referrer">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/home.css">
+  <link rel="stylesheet" href="../css/pages.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <header class="site-nav" id="siteNav">
+    <div class="nav-inner">
+      <a class="brand" href="../index.html" aria-label="The Knights Of BD — home">
+        <img class="brand__logo" src="../assets/KnightLOGO11.png" alt="" width="38" height="38" decoding="async">
+        <span class="brand__text">THE KNIGHTS<em>OF BD</em></span>
+      </a>
+
+      <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+        <a href="../index.html">Home</a>
+        <a href="../index.html#members">Members</a>
+        <a href="index.html" class="is-current" aria-current="page">Status</a>
+        <a href="../store/">Store</a>
+        <a href="../rules/">Rules</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a class="btn btn-primary btn-sm btn-store" href="../store/">Store</a>
+
+        <div class="auth-slot" data-auth-slot>
+          <span class="auth-skeleton" aria-hidden="true"></span>
+
+          <button type="button" class="btn btn-ghost btn-sm" data-auth="guest" data-open-modal="authModal">
+            <i class="fa-solid fa-user"></i><span>Login</span>
+          </button>
+
+          <div class="user-menu" data-auth="user">
+            <button type="button" class="user-chip" id="userChip" aria-haspopup="true" aria-expanded="false">
+              <img data-user-avatar alt="" width="30" height="30" decoding="async">
+              <span data-user-name>Knight</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="user-dropdown" role="menu">
+              <div class="user-dropdown__head">
+                <strong data-user-name>Knight</strong>
+                <span data-user-email>—</span>
+              </div>
+              <a href="../account/" role="menuitem"><i class="fa-solid fa-user"></i> My account</a>
+              <a href="../account/#orders" role="menuitem"><i class="fa-solid fa-receipt"></i> My orders</a>
+              <a href="../store/" role="menuitem"><i class="fa-solid fa-store"></i> Store</a>
+              <button type="button" data-logout role="menuitem" class="is-danger">
+                <i class="fa-solid fa-right-from-bracket"></i> Log out
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false"><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="shell">
+    <header class="page-head">
+      <div class="wrap">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../index.html">Home</a>
+          <i class="fa-solid fa-chevron-right"></i>
+          <span>Status</span>
+        </nav>
+        <h1>Server <span class="gradient-text">status</span></h1>
+        <p>Live data straight from the server, refreshed every minute. Both addresses below point to the same world.</p>
+      </div>
+    </header>
+
+    <div class="page-body">
+      <div class="wrap">
+
+        <div class="status-page-grid">
+          <!-- Primary -->
+          <article class="status-card is-loading" data-status data-status-host="synapse.veltrionhost.com" data-status-port="25568">
+            <div class="status-card__top">
+              <div class="status-server">
+                <img class="status-server__icon" data-status-icon alt="" width="50" height="50" hidden decoding="async">
+                <div>
+                  <p class="status-kicker">Primary address</p>
+                  <h2 class="status-name">The Knights Of BD</h2>
+                </div>
+              </div>
+              <span class="status-pill" data-status-pill>
+                <span class="status-pill__dot"></span>
+                <span data-status-label>Checking…</span>
+              </span>
+            </div>
+
+            <div class="status-body">
+              <div class="status-players">
+                <strong data-status-online>—</strong>
+                <span>/ <span data-status-max>—</span> players online</span>
+              </div>
+              <div class="status-bar" role="presentation"><span class="status-bar__fill" data-status-bar></span></div>
+            </div>
+
+            <dl class="status-meta">
+              <div><dt>Version</dt><dd data-status-version>—</dd></div>
+              <div><dt>Region</dt><dd>Asia</dd></div>
+              <div><dt>Updated</dt><dd data-status-updated>—</dd></div>
+            </dl>
+
+            <p class="status-motd" data-status-motd hidden></p>
+
+            <div class="status-actions">
+              <button type="button" class="btn btn-primary btn-sm" data-ip="primary" data-copy>
+                <i class="fa-regular fa-copy"></i> Copy IP
+              </button>
+              <button type="button" class="btn btn-ghost btn-sm" data-status-refresh>
+                <i class="fa-solid fa-rotate"></i> Refresh
+              </button>
+            </div>
+          </article>
+
+          <!-- Alternate -->
+          <article class="status-card is-loading" data-status data-status-host="knightsbd.mine.bz" data-status-port="25568">
+            <div class="status-card__top">
+              <div class="status-server">
+                <img class="status-server__icon" data-status-icon alt="" width="50" height="50" hidden decoding="async">
+                <div>
+                  <p class="status-kicker">Alternate address</p>
+                  <h2 class="status-name">The Knights Of BD</h2>
+                </div>
+              </div>
+              <span class="status-pill" data-status-pill>
+                <span class="status-pill__dot"></span>
+                <span data-status-label>Checking…</span>
+              </span>
+            </div>
+
+            <div class="status-body">
+              <div class="status-players">
+                <strong data-status-online>—</strong>
+                <span>/ <span data-status-max>—</span> players online</span>
+              </div>
+              <div class="status-bar" role="presentation"><span class="status-bar__fill" data-status-bar></span></div>
+            </div>
+
+            <dl class="status-meta">
+              <div><dt>Version</dt><dd data-status-version>—</dd></div>
+              <div><dt>Region</dt><dd>Asia</dd></div>
+              <div><dt>Updated</dt><dd data-status-updated>—</dd></div>
+            </dl>
+
+            <p class="status-motd" data-status-motd hidden></p>
+
+            <div class="status-actions">
+              <button type="button" class="btn btn-primary btn-sm" data-ip="alternate" data-copy>
+                <i class="fa-regular fa-copy"></i> Copy IP
+              </button>
+              <button type="button" class="btn btn-ghost btn-sm" data-status-refresh>
+                <i class="fa-solid fa-rotate"></i> Refresh
+              </button>
+            </div>
+          </article>
+        </div>
+
+        <div class="info-grid">
+          <div class="info-cell"><span>Edition</span><strong>Java Edition</strong></div>
+          <div class="info-cell"><span>Supported versions</span><strong>1.8 – 1.21.x</strong></div>
+          <div class="info-cell"><span>Server software</span><strong>Paper 1.21.11</strong></div>
+          <div class="info-cell"><span>Player slots</span><strong>50</strong></div>
+          <div class="info-cell"><span>Region</span><strong>Asia</strong></div>
+          <div class="info-cell"><span>Hosting</span><strong>24/7 dedicated</strong></div>
+        </div>
+
+        <section class="panel" style="margin-top:24px;">
+          <div class="panel__head">
+            <h2><i class="fa-solid fa-plug-circle-check"></i> How to connect</h2>
+          </div>
+          <div class="panel__body">
+            <div class="ip-list" style="margin-top:0;">
+              <div class="ip-row">
+                <div class="ip-row__head">
+                  <h3>Primary address</h3>
+                  <span class="badge badge--green">Recommended</span>
+                </div>
+                <div class="ip-row__value">
+                  <code data-ip="primary">synapse.veltrionhost.com:25568</code>
+                  <button type="button" class="btn btn-ghost btn-sm" data-ip="primary" data-copy>
+                    <i class="fa-regular fa-copy"></i> Copy
+                  </button>
+                </div>
+              </div>
+
+              <div class="ip-row">
+                <div class="ip-row__head">
+                  <h3>Alternate address</h3>
+                  <span class="badge badge--muted">Backup</span>
+                </div>
+                <div class="ip-row__value">
+                  <code data-ip="alternate">knightsbd.mine.bz:25568</code>
+                  <button type="button" class="btn btn-ghost btn-sm" data-ip="alternate" data-copy>
+                    <i class="fa-regular fa-copy"></i> Copy
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="ip-note">
+              <i class="fa-solid fa-circle-info"></i>
+              Open Minecraft → <strong>Multiplayer</strong> → <strong>Add Server</strong>, paste an address and join.
+              If one address does not respond, try the other — they share the same world and inventory.
+            </div>
+          </div>
+        </section>
+
+        <p class="form-hint" style="margin-top:18px;">
+          Status data is fetched from public Minecraft server APIs. A refresh happens every 60 seconds while this tab is visible.
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="../index.html">
+            <img class="brand__logo" src="../assets/KnightLOGO11.png" alt="" width="38" height="38" loading="lazy" decoding="async">
+            <span class="brand__text">THE KNIGHTS<em>OF BD</em></span>
+          </a>
+          <p>Live status, straight from the server.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Play</h4>
+          <span><i class="fa-solid fa-server"></i> <code data-ip="primary">synapse.veltrionhost.com:25568</code></span>
+          <span><i class="fa-solid fa-server"></i> <code data-ip="alternate">knightsbd.mine.bz:25568</code></span>
+          <a href="../store/"><i class="fa-solid fa-store"></i> Store</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>Community</h4>
+          <a href="https://discord.gg/GU9426EpBM" data-discord target="_blank" rel="noopener"><i class="fa-brands fa-discord"></i> Discord server</a>
+          <a href="../rules/"><i class="fa-solid fa-scroll"></i> Rules</a>
+          <a href="../account/"><i class="fa-solid fa-user"></i> My account</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 The Knights Of BD. Not affiliated with Mojang or Microsoft.</span>
+        <span>Built by <span class="highlight">Hemal Das</span></span>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>
