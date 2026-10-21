@@ -724,3 +724,212 @@
     align-items: flex-start;
   }
 }
+
+/* =========================================================================
+   WALLET CHECKOUT
+   ========================================================================= */
+
+.checkout-wallet {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: 12px;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.022);
+  transition: border-color 0.18s ease, background 0.18s ease;
+}
+
+.checkout-wallet__main span {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.64rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.checkout-wallet__main span i {
+  color: var(--gold);
+  font-size: 0.72rem;
+}
+
+.checkout-wallet__main strong {
+  display: block;
+  margin-top: 2px;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  color: var(--gold);
+  font-variant-numeric: tabular-nums;
+}
+
+.checkout-wallet__side {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  text-align: right;
+}
+
+.checkout-wallet__side > span {
+  max-width: 37ch;
+  font-size: 0.67rem;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+.checkout-wallet__topup {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--cyan);
+  transition: color 0.18s ease, gap 0.18s ease;
+}
+
+.checkout-wallet__topup:hover {
+  color: #8ff7ff;
+  gap: 9px;
+}
+
+.checkout-wallet__topup i {
+  font-size: 0.6rem;
+}
+
+.checkout-wallet.is-ready {
+  border-color: rgba(46, 230, 168, 0.24);
+  background: rgba(46, 230, 168, 0.045);
+}
+
+.checkout-wallet.is-ready .checkout-wallet__side > span {
+  color: var(--green);
+}
+
+.checkout-wallet.is-error {
+  border-color: rgba(255, 92, 122, 0.22);
+  background: rgba(255, 92, 122, 0.04);
+}
+
+.pay-methods {
+  grid-template-columns: repeat(auto-fit, minmax(135px, 1fr));
+}
+
+.pay-method small {
+  margin-left: auto;
+  font-size: 0.66rem;
+  font-weight: 600;
+  color: var(--gold);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.pay-method--wallet.is-active {
+  border-color: rgba(255, 200, 87, 0.45);
+  background: rgba(255, 200, 87, 0.08);
+}
+
+.pay-method--wallet.is-active > i {
+  color: var(--gold);
+}
+
+.pay-method--wallet.is-active small {
+  color: var(--gold);
+}
+
+.pay-method.is-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pay-method.is-disabled:hover {
+  transform: none;
+  border-color: var(--line);
+}
+
+.pay-panel--wallet {
+  border-color: rgba(255, 200, 87, 0.2);
+  background:
+    radial-gradient(110% 140% at 0% 0%, rgba(255, 200, 87, 0.07), transparent 58%),
+    rgba(0, 0, 0, 0.22);
+}
+
+.pay-panel--wallet .pay-panel__title i {
+  color: var(--gold);
+}
+
+.pay-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px;
+  margin-top: 14px;
+}
+
+.pay-split > div {
+  padding: 11px 13px;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.pay-split span {
+  display: block;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.pay-split strong {
+  display: block;
+  margin-top: 3px;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--gold);
+  font-variant-numeric: tabular-nums;
+}
+
+.pay-panel--wallet .step-num {
+  background: rgba(255, 200, 87, 0.12);
+  color: var(--gold);
+}
+
+.pay-panel--wallet .pay-note i {
+  color: var(--green);
+}
+
+.pay-panel--wallet .btn-block {
+  width: 100%;
+}
+
+@media (max-width: 620px) {
+  .pay-methods {
+    grid-template-columns: 1fr;
+  }
+
+  .checkout-wallet {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 9px;
+  }
+
+  .checkout-wallet__side {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .checkout-wallet__side > span {
+    max-width: none;
+  }
+}
+
+@media (max-width: 430px) {
+  .pay-split {
+    grid-template-columns: 1fr;
+  }
+}

@@ -92,19 +92,37 @@ export async function getProfile(uid) {
 
 /* ------------------------------- orders ------------------------------- */
 
-export async function saveOrder(order) {
+export async function saveOrder(order, { requireCloud = false } = {}) {
   const record = { ...order, createdAt: order.createdAt || Date.now() };
 
-  const local = readLocal(ordersKey(order.uid), []);
-  const next = [record, ...local.filter((row) => row.orderId !== record.orderId)];
-  writeLocal(ordersKey(order.uid), next);
+  if (!requireCloud) {
+    const local = readLocal(ordersKey(order.uid), []);
+    const next = [record, ...local.filter((row) => row.orderId !== record.orderId)];
+    writeLocal(ordersKey(order.uid), next);
+  }
 
   try {
     await setDoc(doc(db, 'orders', order.orderId), record);
     cloudOk = true;
   } catch (error) {
     cloudOk = false;
-    console.warn('[TKBD] Order saved locally — Firestore unavailable:', error?.code || error);
+    console.warn('[TKBD] Order saved locally - Firestore unavailable:', error?.code || error);
+
+    if (requireCloud) throw error;
+
+    const local = readLocal(ordersKey(order.uid), []);
+    if (!local.some((row) => row.orderId === record.orderId)) {
+      writeLocal(ordersKey(order.uid), [record, ...local]);
+    }
+    return record;
+  }
+
+  if (requireCloud) {
+    const local = readLocal(ordersKey(order.uid), []);
+    writeLocal(
+      ordersKey(order.uid),
+      [record, ...local.filter((row) => row.orderId !== record.orderId)]
+    );
   }
 
   return record;

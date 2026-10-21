@@ -60,6 +60,7 @@
               </div>
               <a href="index.html" role="menuitem"><i class="fa-solid fa-user"></i> My account</a>
               <a href="#orders" role="menuitem"><i class="fa-solid fa-receipt"></i> My orders</a>
+              <a href="#wallet" role="menuitem"><i class="fa-solid fa-wallet"></i> My wallet</a>
               <a href="../store/" role="menuitem"><i class="fa-solid fa-store"></i> Store</a>
               <button type="button" data-logout role="menuitem" class="is-danger">
                 <i class="fa-solid fa-right-from-bracket"></i> Log out
@@ -82,7 +83,7 @@
           <span>My account</span>
         </nav>
         <h1>My <span class="gradient-text">account</span></h1>
-        <p>Your profile, Minecraft link and every order you have placed.</p>
+        <p>Your profile, store credit, Minecraft link and every order you have placed.</p>
       </div>
     </header>
 
@@ -134,6 +135,39 @@
               </div>
             </div>
           </div>
+
+          <!-- Wallet overview -->
+          <section class="wallet-hero" id="wallet" aria-label="Store wallet">
+            <div class="wallet-hero__glow" aria-hidden="true"></div>
+            <div class="wallet-hero__main">
+              <span class="wallet-hero__eyebrow"><i class="fa-solid fa-wallet"></i> Store credit</span>
+              <div class="wallet-hero__balance-row">
+                <strong class="wallet-hero__balance" id="walletBalance">৳0</strong>
+                <span class="wallet-hero__badge"><i class="fa-solid fa-shield-halved"></i> Admin secured</span>
+              </div>
+              <p class="wallet-hero__copy">Top up with bKash or Nagad. Staff check every payment before your balance is credited.</p>
+              <div class="wallet-hero__actions">
+                <button type="button" class="btn btn-primary" data-open-modal="topupModal">
+                  <i class="fa-solid fa-plus"></i> Top up wallet
+                </button>
+                <a class="btn btn-ghost" href="../store/">
+                  <i class="fa-solid fa-bag-shopping"></i> Spend in store
+                </a>
+              </div>
+            </div>
+
+            <div class="wallet-hero__side">
+              <div class="wallet-hero__mini">
+                <span>Pending requests</span>
+                <strong id="walletPendingCount">0</strong>
+              </div>
+              <div class="wallet-hero__mini">
+                <span>Accepted</span>
+                <strong class="wallet-hero__methods"><i class="fa-solid fa-mobile-screen-button"></i> bKash · Nagad</strong>
+              </div>
+              <a class="wallet-hero__history-link" href="#topups">View top-up history <i class="fa-solid fa-arrow-down"></i></a>
+            </div>
+          </section>
 
           <div class="account-grid">
             <!-- Profile summary -->
@@ -214,6 +248,19 @@
                   </div>
                 </div>
               </section>
+
+              <!-- Top-up history -->
+              <section class="panel" id="topups">
+                <div class="panel__head">
+                  <h2><i class="fa-solid fa-arrow-down-long"></i> Top-up history</h2>
+                  <span class="badge badge--muted" id="topupsCount">0</span>
+                </div>
+                <div class="panel__body">
+                  <div class="topup-list" id="topupList">
+                    <p class="form-hint">Loading top-ups…</p>
+                  </div>
+                </div>
+              </section>
             </div>
           </div>
         </div>
@@ -254,6 +301,91 @@
       </div>
     </div>
   </footer>
+
+  <!-- Top-up modal -->
+  <div class="modal topup-modal" id="topupModal" role="dialog" aria-modal="true" aria-labelledby="topupTitle" tabindex="-1">
+    <div class="modal__card topup-modal__card">
+      <button type="button" class="modal__close" data-close-modal aria-label="Close">&times;</button>
+
+      <header class="topup-modal__head">
+        <span class="topup-modal__crest"><i class="fa-solid fa-wallet"></i></span>
+        <div>
+          <span class="topup-modal__eyebrow">Add store credit</span>
+          <h2 id="topupTitle">Top up your wallet</h2>
+          <p>Send the money first, then submit the transaction details below.</p>
+        </div>
+      </header>
+
+      <div class="topup-steps" aria-hidden="true">
+        <span><b>1</b> Send money</span>
+        <i class="fa-solid fa-arrow-right"></i>
+        <span><b>2</b> Submit TrxID</span>
+        <i class="fa-solid fa-arrow-right"></i>
+        <span><b>3</b> Get credited</span>
+      </div>
+
+      <form class="form-stack topup-form" id="topupForm" novalidate>
+        <div class="topup-methods" role="radiogroup" aria-label="Payment method">
+          <button type="button" class="topup-method is-active" data-topup-method="bkash" role="radio" aria-checked="true">
+            <span class="topup-method__logo topup-method__logo--bkash">bKash</span>
+            <span class="topup-method__text"><strong>bKash</strong><em>Send Money</em></span>
+            <i class="fa-solid fa-circle-check"></i>
+          </button>
+          <button type="button" class="topup-method" data-topup-method="nagad" role="radio" aria-checked="false">
+            <span class="topup-method__logo topup-method__logo--nagad">Nagad</span>
+            <span class="topup-method__text"><strong>Nagad</strong><em>Send Money</em></span>
+            <i class="fa-solid fa-circle-check"></i>
+          </button>
+        </div>
+
+        <div class="topup-paybox">
+          <div>
+            <span>Send money to</span>
+            <strong id="topupNumber">01765980414</strong>
+          </div>
+          <button type="button" class="topup-copy" id="topupCopyBtn">
+            <i class="fa-regular fa-copy"></i> Copy
+          </button>
+        </div>
+
+        <div class="topup-amount">
+          <label class="field">
+            <span class="field__label">Amount (BDT)</span>
+            <input type="number" name="amount" min="10" max="50000" step="1" inputmode="numeric" placeholder="500" required>
+          </label>
+          <div class="topup-presets" id="topupPresets" aria-label="Quick amounts"></div>
+        </div>
+
+        <div class="field-row">
+          <label class="field">
+            <span class="field__label">Sender number</span>
+            <input type="tel" name="senderNumber" inputmode="numeric" maxlength="14" placeholder="01XXXXXXXXX" autocomplete="tel" required>
+          </label>
+          <label class="field">
+            <span class="field__label">Transaction ID</span>
+            <input type="text" name="txnId" maxlength="40" placeholder="e.g. 9F7K2M1Q" autocomplete="off" required>
+          </label>
+        </div>
+
+        <label class="field">
+          <span class="field__label">Note <em>(optional)</em></span>
+          <input type="text" name="note" maxlength="160" placeholder="Anything staff should know" autocomplete="off">
+        </label>
+
+        <p class="form-error" id="topupError" role="alert" hidden></p>
+
+        <div class="topup-note">
+          <i class="fa-solid fa-circle-info"></i>
+          <span>Minimum ৳<span id="topupMin">10</span>, maximum ৳<span id="topupMax">50,000</span>. Staff verify every request manually, usually within a few hours.</span>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block" id="topupSubmit">
+          <span class="btn__label"><i class="fa-solid fa-paper-plane"></i> Submit top-up request</span>
+          <span class="btn__spinner" aria-hidden="true"></span>
+        </button>
+      </form>
+    </div>
+  </div>
 
   <script type="module" src="script.js"></script>
 </body>

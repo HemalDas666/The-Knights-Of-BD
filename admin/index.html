@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en" data-base="../" data-page="admin">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta name="theme-color" content="#04040b">
+  <meta name="color-scheme" content="dark">
+  <title>Staff Console | The Knights Of BD</title>
+
+  <link rel="icon" type="image/png" href="../assets/KnightLOGO9.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" referrerpolicy="no-referrer">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body class="admin-body">
+
+  <div class="admin-ambient" aria-hidden="true">
+    <span class="admin-ambient__orb admin-ambient__orb--one"></span>
+    <span class="admin-ambient__orb admin-ambient__orb--two"></span>
+    <span class="admin-ambient__grid"></span>
+  </div>
+
+  <!-- Boot -->
+  <div class="admin-boot" id="adminBoot">
+    <div class="admin-boot__mark">
+      <img src="../assets/KnightLOGO11.png" alt="" width="58" height="58">
+    </div>
+    <span class="admin-boot__eyebrow">The Knights Of BD</span>
+    <strong>Opening the console</strong>
+    <div class="admin-boot__track"><span></span></div>
+    <p>Checking your session…</p>
+  </div>
+
+  <!-- Login gate -->
+  <main class="gate" id="gateLogin" hidden>
+    <a class="gate__back" href="../index.html"><i class="fa-solid fa-arrow-left"></i> Back to site</a>
+
+    <section class="gate-card" aria-labelledby="gateLoginTitle">
+      <span class="gate-card__crest"><i class="fa-solid fa-shield-halved"></i></span>
+      <span class="gate-card__eyebrow">Restricted area</span>
+      <h1 id="gateLoginTitle">Staff <span class="gradient-text">console</span></h1>
+      <p>Owner sign-in only. This console is not linked anywhere on the public site.</p>
+
+      <form class="form-stack gate-form" id="adminLoginForm" novalidate>
+        <label class="field">
+          <span class="field__label">Email address</span>
+          <input type="email" name="email" autocomplete="username" placeholder="you@example.com" required>
+        </label>
+
+        <label class="field">
+          <span class="field__label">Password</span>
+          <span class="input-group">
+            <input type="password" name="password" autocomplete="current-password" placeholder="Your password" required>
+            <button type="button" class="input-group__toggle" data-toggle-password aria-label="Show password">
+              <i class="fa-solid fa-eye"></i>
+            </button>
+          </span>
+        </label>
+
+        <p class="form-error" id="adminLoginError" hidden></p>
+
+        <button type="submit" class="btn btn-primary btn-block" id="adminLoginBtn">
+          <span class="btn__label"><i class="fa-solid fa-right-to-bracket"></i> Enter console</span>
+          <span class="btn__spinner" aria-hidden="true"></span>
+        </button>
+      </form>
+
+      <div class="gate-card__foot">
+        <i class="fa-solid fa-lock"></i>
+        Firebase Authentication + Firestore rules
+      </div>
+
+      <p class="gate-hint">
+        First time? <a href="../account/">Create and verify the owner account</a>, then sign in here.
+      </p>
+    </section>
+  </main>
+
+  <!-- Verify gate -->
+  <main class="gate" id="gateVerify" hidden>
+    <a class="gate__back" href="../index.html"><i class="fa-solid fa-arrow-left"></i> Back to site</a>
+
+    <section class="gate-card gate-card--wide" aria-labelledby="gateVerifyTitle">
+      <span class="gate-card__crest gate-card__crest--gold"><i class="fa-solid fa-envelope-circle-check"></i></span>
+      <span class="gate-card__eyebrow">One last step</span>
+      <h1 id="gateVerifyTitle">Verify your <span class="gold-text">email</span></h1>
+      <p>For security, the owner account must have a verified email before it can read or move wallet money.</p>
+
+      <div class="gate-note">
+        <i class="fa-solid fa-paper-plane"></i>
+        <div>
+          <span>Verification link sent to</span>
+          <strong id="verifyEmail">—</strong>
+        </div>
+      </div>
+
+      <div class="gate-actions">
+        <button type="button" class="btn btn-primary" id="resendVerifyAdmin">
+          <span class="btn__label"><i class="fa-solid fa-rotate-right"></i> Resend email</span>
+          <span class="btn__spinner" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="btn btn-ghost" id="checkVerifyAdmin">
+          <span class="btn__label"><i class="fa-solid fa-circle-check"></i> I've verified</span>
+          <span class="btn__spinner" aria-hidden="true"></span>
+        </button>
+      </div>
+
+      <button type="button" class="gate-switch" id="verifySignOut">Sign out and use another account</button>
+
+      <p class="gate-hint">Check the spam folder too. The link can take a minute to arrive.</p>
+    </section>
+  </main>
+
+  <!-- Denied gate -->
+  <main class="gate" id="gateDenied" hidden>
+    <a class="gate__back" href="../index.html"><i class="fa-solid fa-arrow-left"></i> Back to site</a>
+
+    <section class="gate-card gate-card--wide" aria-labelledby="gateDeniedTitle">
+      <span class="gate-card__crest gate-card__crest--red"><i class="fa-solid fa-lock"></i></span>
+      <span class="gate-card__eyebrow">Not on the list</span>
+      <h1 id="gateDeniedTitle">Access <span class="red-text">denied</span></h1>
+      <p>This console belongs to the server owner. The account currently signed in is not allowed in.</p>
+
+      <div class="gate-note gate-note--red">
+        <i class="fa-solid fa-user-shield"></i>
+        <div>
+          <span>Signed in as</span>
+          <strong id="deniedEmail">—</strong>
+        </div>
+      </div>
+
+      <div class="gate-actions">
+        <button type="button" class="btn btn-primary" id="deniedSignOut">
+          <i class="fa-solid fa-right-from-bracket"></i> Sign out
+        </button>
+        <a class="btn btn-ghost" href="../account/"><i class="fa-solid fa-user"></i> My account</a>
+      </div>
+
+      <p class="gate-hint">If this is your account, sign out and sign in with the owner email.</p>
+    </section>
+  </main>
+
+  <!-- Console -->
+  <div class="admin-shell" id="adminShell" hidden>
+    <aside class="admin-sidebar">
+      <a class="admin-brand" href="../index.html" aria-label="The Knights Of BD home">
+        <img src="../assets/KnightLOGO11.png" alt="" width="38" height="38" decoding="async">
+        <span><strong>THE KNIGHTS</strong><em>OWNER CONSOLE</em></span>
+      </a>
+
+      <div class="admin-nav-label">Control room</div>
+      <nav class="admin-nav" aria-label="Admin sections">
+        <button type="button" class="is-active" data-admin-view="overview">
+          <i class="fa-solid fa-gauge-high"></i>
+          <span>Overview</span>
+        </button>
+        <button type="button" data-admin-view="topups">
+          <i class="fa-solid fa-arrow-down-long"></i>
+          <span>Top-ups</span>
+          <b class="admin-nav__badge" data-nav-badge="topups" hidden>0</b>
+        </button>
+        <button type="button" data-admin-view="orders">
+          <i class="fa-solid fa-receipt"></i>
+          <span>Orders</span>
+          <b class="admin-nav__badge admin-nav__badge--pink" data-nav-badge="orders" hidden>0</b>
+        </button>
+        <button type="button" data-admin-view="players">
+          <i class="fa-solid fa-users"></i>
+          <span>Players</span>
+        </button>
+      </nav>
+
+      <div class="admin-sidebar__spacer"></div>
+
+      <div class="admin-identity">
+        <span class="admin-identity__icon"><i class="fa-solid fa-shield-halved"></i></span>
+        <div>
+          <strong>Owner access</strong>
+          <span data-admin-email>—</span>
+        </div>
+      </div>
+
+      <button type="button" class="btn btn-ghost btn-sm btn-block" id="adminSignOut">
+        <i class="fa-solid fa-right-from-bracket"></i> Sign out
+      </button>
+      <a class="admin-site-link" href="../index.html"><i class="fa-solid fa-arrow-up-right-from-square"></i> View live site</a>
+    </aside>
+
+    <div class="admin-main">
+      <header class="admin-topbar">
+        <div class="admin-topbar__left">
+          <span class="admin-topbar__mark"><img src="../assets/KnightLOGO11.png" alt="" width="28" height="28"></span>
+          <div>
+            <span class="admin-topbar__eyebrow">The Knights Of BD</span>
+            <h1 id="adminViewTitle">Overview</h1>
+          </div>
+        </div>
+
+        <div class="admin-topbar__right">
+          <span class="admin-live"><i></i> Live</span>
+          <span class="admin-chip" title="Signed-in owner">
+            <i class="fa-solid fa-shield-halved"></i>
+            <span data-admin-email>—</span>
+          </span>
+          <button type="button" class="admin-icon-btn" id="adminSignOutTop" aria-label="Sign out">
+            <i class="fa-solid fa-right-from-bracket"></i>
+          </button>
+        </div>
+      </header>
+
+      <main class="admin-content" id="adminContent">
+        <div class="admin-alert" id="setupBanner" hidden>
+          <i class="fa-solid fa-triangle-exclamation"></i>
+          <div>
+            <strong>Firestore is blocking the console</strong>
+            <p>Publish the updated rules from <a href="../SETUP.md" target="_blank" rel="noopener">SETUP.md</a> in the <a href="https://console.firebase.google.com/project/the-knights-acc/firestore/rules" target="_blank" rel="noopener">Firebase Console</a>. Until then the console cannot read or credit wallets.</p>
+          </div>
+          <button type="button" class="btn btn-ghost btn-sm" id="retryFirestore"><i class="fa-solid fa-rotate"></i> Retry</button>
+        </div>
+
+        <!-- Overview -->
+        <section class="admin-view is-active" data-admin-panel="overview">
+          <div class="admin-stat-grid">
+            <button type="button" class="admin-stat admin-stat--gold" data-jump="topups" data-jump-filter="pending">
+              <span class="admin-stat__icon"><i class="fa-solid fa-arrow-down-long"></i></span>
+              <span class="admin-stat__body">
+                <span>Pending top-ups</span>
+                <strong data-stat="pendingTopups">0</strong>
+                <small>Awaiting your approval</small>
+              </span>
+              <i class="fa-solid fa-arrow-right admin-stat__arrow"></i>
+            </button>
+
+            <button type="button" class="admin-stat admin-stat--pink" data-jump="orders" data-jump-filter="wallet">
+              <span class="admin-stat__icon"><i class="fa-solid fa-wallet"></i></span>
+              <span class="admin-stat__body">
+                <span>Wallet orders</span>
+                <strong data-stat="walletOrders">0</strong>
+                <small>Ready to deduct &amp; pay</small>
+              </span>
+              <i class="fa-solid fa-arrow-right admin-stat__arrow"></i>
+            </button>
+
+            <button type="button" class="admin-stat admin-stat--cyan" data-jump="orders" data-jump-filter="pending">
+              <span class="admin-stat__icon"><i class="fa-solid fa-receipt"></i></span>
+              <span class="admin-stat__body">
+                <span>Pending orders</span>
+                <strong data-stat="pendingOrders">0</strong>
+                <small>bKash, Nagad &amp; wallet</small>
+              </span>
+              <i class="fa-solid fa-arrow-right admin-stat__arrow"></i>
+            </button>
+
+            <button type="button" class="admin-stat admin-stat--green" data-jump="players">
+              <span class="admin-stat__icon"><i class="fa-solid fa-vault"></i></span>
+              <span class="admin-stat__body">
+                <span>Wallet liability</span>
+                <strong data-stat="liability">৳0</strong>
+                <small>Owed to players as credit</small>
+              </span>
+              <i class="fa-solid fa-arrow-right admin-stat__arrow"></i>
+            </button>
+          </div>
+
+          <div class="admin-overview-grid">
+            <section class="admin-panel">
+              <header class="admin-panel__head">
+                <div>
+                  <span class="admin-panel__eyebrow">Action queue</span>
+                  <h2>Needs attention</h2>
+                </div>
+                <button type="button" class="admin-link" data-jump="topups" data-jump-filter="pending">View all <i class="fa-solid fa-arrow-right"></i></button>
+              </header>
+              <div class="admin-panel__body">
+                <div class="admin-list" id="attentionList">
+                  <div class="admin-skeleton"><span></span><span></span><span></span></div>
+                  <div class="admin-skeleton"><span></span><span></span><span></span></div>
+                </div>
+              </div>
+            </section>
+
+            <section class="admin-panel">
+              <header class="admin-panel__head">
+                <div>
+                  <span class="admin-panel__eyebrow">Audit trail</span>
+                  <h2>Recent activity</h2>
+                </div>
+                <span class="admin-panel__live"><i></i> auto</span>
+              </header>
+              <div class="admin-panel__body">
+                <div class="admin-list admin-list--activity" id="activityList">
+                  <div class="admin-skeleton"><span></span><span></span><span></span></div>
+                  <div class="admin-skeleton"><span></span><span></span><span></span></div>
+                  <div class="admin-skeleton"><span></span><span></span><span></span></div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <!-- Top-ups -->
+        <section class="admin-view" data-admin-panel="topups" hidden>
+          <div class="admin-toolbar">
+            <div class="admin-filters" id="topupFilters" aria-label="Filter top-ups">
+              <button type="button" class="is-active" data-topup-filter="pending">Pending <span data-filter-count="topups.pending">0</span></button>
+              <button type="button" data-topup-filter="approved">Approved <span data-filter-count="topups.approved">0</span></button>
+              <button type="button" data-topup-filter="rejected">Rejected <span data-filter-count="topups.rejected">0</span></button>
+              <button type="button" data-topup-filter="all">All <span data-filter-count="topups.all">0</span></button>
+            </div>
+            <button type="button" class="admin-refresh" data-refresh="topups"><i class="fa-solid fa-rotate"></i> Refresh</button>
+          </div>
+          <div class="admin-list" id="topupList">
+            <div class="admin-skeleton"><span></span><span></span><span></span></div>
+            <div class="admin-skeleton"><span></span><span></span><span></span></div>
+          </div>
+        </section>
+
+        <!-- Orders -->
+        <section class="admin-view" data-admin-panel="orders" hidden>
+          <div class="admin-toolbar">
+            <div class="admin-filters" id="orderFilters" aria-label="Filter orders">
+              <button type="button" class="is-active" data-order-filter="pending">Pending <span data-filter-count="orders.pending">0</span></button>
+              <button type="button" data-order-filter="wallet">Wallet <span data-filter-count="orders.wallet">0</span></button>
+              <button type="button" data-order-filter="paid">Paid <span data-filter-count="orders.paid">0</span></button>
+              <button type="button" data-order-filter="delivered">Delivered <span data-filter-count="orders.delivered">0</span></button>
+              <button type="button" data-order-filter="cancelled">Cancelled <span data-filter-count="orders.cancelled">0</span></button>
+              <button type="button" data-order-filter="all">All <span data-filter-count="orders.all">0</span></button>
+            </div>
+            <button type="button" class="admin-refresh" data-refresh="orders"><i class="fa-solid fa-rotate"></i> Refresh</button>
+          </div>
+          <div class="admin-list" id="orderList">
+            <div class="admin-skeleton"><span></span><span></span><span></span></div>
+            <div class="admin-skeleton"><span></span><span></span><span></span></div>
+          </div>
+        </section>
+
+        <!-- Players -->
+        <section class="admin-view" data-admin-panel="players" hidden>
+          <div class="admin-toolbar admin-toolbar--players">
+            <div class="admin-search">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input type="search" id="playerSearch" placeholder="Search username, email, IGN or UID…" autocomplete="off">
+              <span id="playerCount">0 players</span>
+            </div>
+            <button type="button" class="admin-refresh" data-refresh="players"><i class="fa-solid fa-rotate"></i> Refresh</button>
+          </div>
+          <div class="admin-player-grid" id="playerList">
+            <div class="admin-skeleton admin-skeleton--player"><span></span><span></span><span></span></div>
+            <div class="admin-skeleton admin-skeleton--player"><span></span><span></span><span></span></div>
+          </div>
+        </section>
+      </main>
+
+      <nav class="admin-bottom-nav" aria-label="Admin sections">
+        <button type="button" class="is-active" data-admin-view="overview">
+          <i class="fa-solid fa-gauge-high"></i><span>Overview</span>
+        </button>
+        <button type="button" data-admin-view="topups">
+          <i class="fa-solid fa-arrow-down-long"></i><span>Top-ups</span>
+          <b class="admin-bottom-nav__dot" data-nav-dot="topups" hidden></b>
+        </button>
+        <button type="button" data-admin-view="orders">
+          <i class="fa-solid fa-receipt"></i><span>Orders</span>
+          <b class="admin-bottom-nav__dot admin-bottom-nav__dot--pink" data-nav-dot="orders" hidden></b>
+        </button>
+        <button type="button" data-admin-view="players">
+          <i class="fa-solid fa-users"></i><span>Players</span>
+        </button>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Player modal -->
+  <div class="modal admin-modal" id="playerModal" role="dialog" aria-modal="true" aria-labelledby="playerModalName" tabindex="-1">
+    <div class="modal__card admin-modal__card">
+      <button type="button" class="modal__close" data-close-modal aria-label="Close">&times;</button>
+      <div id="playerModalBody"></div>
+    </div>
+  </div>
+
+  <!-- Confirm modal -->
+  <div class="modal admin-modal" id="adminConfirm" role="dialog" aria-modal="true" aria-labelledby="confirmTitle" tabindex="-1">
+    <div class="modal__card admin-modal__card admin-modal__card--confirm">
+      <button type="button" class="modal__close" data-close-modal aria-label="Close">&times;</button>
+      <span class="admin-confirm__icon" id="confirmIcon"><i class="fa-solid fa-triangle-exclamation"></i></span>
+      <h2 id="confirmTitle">Confirm action</h2>
+      <p class="admin-confirm__message" id="confirmMessage">—</p>
+      <div class="admin-confirm__summary" id="confirmSummary" hidden></div>
+      <label class="field" id="confirmInputWrap" hidden>
+        <span class="field__label" id="confirmInputLabel">Reason</span>
+        <input type="text" id="confirmInput" maxlength="200" autocomplete="off">
+      </label>
+      <p class="form-error" id="confirmError" hidden></p>
+      <div class="admin-modal__actions">
+        <button type="button" class="btn btn-ghost" id="confirmCancel">Cancel</button>
+        <button type="button" class="btn btn-primary" id="confirmOk">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

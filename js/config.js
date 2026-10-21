@@ -17,6 +17,27 @@ export const SITE = {
   supportEmail: ''
 };
 
+/* ============================== ADMIN =================================
+   The only account allowed into the private console. Access is enforced
+   by Firebase Auth + Firestore rules — not by hiding the URL.
+   ====================================================================== */
+
+export const ADMIN = {
+  email: 'dasheaml08@gmail.com',
+  label: 'Owner'
+};
+
+/* ============================== WALLET ================================
+   Store credit is denominated in BDT, like every other price on the site.
+   Players request a top-up; staff verify and credit it manually.
+   ====================================================================== */
+
+export const WALLET = {
+  minTopup: 10,
+  maxTopup: 50000,
+  presets: [100, 250, 500, 1000, 2500, 5000]
+};
+
 export const SERVER = {
   primary: {
     label: 'Primary Address',

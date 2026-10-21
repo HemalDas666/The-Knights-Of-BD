@@ -59,6 +59,7 @@
               </div>
               <a href="../account/" role="menuitem"><i class="fa-solid fa-user"></i> My account</a>
               <a href="../account/#orders" role="menuitem"><i class="fa-solid fa-receipt"></i> My orders</a>
+              <a href="../account/#wallet" role="menuitem"><i class="fa-solid fa-wallet"></i> My wallet</a>
               <a href="index.html" role="menuitem"><i class="fa-solid fa-store"></i> Store</a>
               <button type="button" data-logout role="menuitem" class="is-danger">
                 <i class="fa-solid fa-right-from-bracket"></i> Log out
@@ -92,7 +93,7 @@
           <div class="trust-cell"><i class="fa-solid fa-shield-halved"></i><div><strong>Manual verification</strong><span>Every order checked by staff</span></div></div>
           <div class="trust-cell"><i class="fa-solid fa-bolt"></i><div><strong>Fast delivery</strong><span>Usually within minutes</span></div></div>
           <div class="trust-cell"><i class="fa-solid fa-headset"></i><div><strong>24/7 support</strong><span>Through Discord</span></div></div>
-          <div class="trust-cell"><i class="fa-solid fa-mobile-screen-button"></i><div><strong>bKash &amp; Nagad</strong><span>Local payments only</span></div></div>
+          <div class="trust-cell"><i class="fa-solid fa-wallet"></i><div><strong>bKash, Nagad &amp; Wallet</strong><span>Top up once, spend anytime</span></div></div>
         </div>
 
         <!-- Currency converter -->
@@ -179,7 +180,7 @@
     <div class="modal__card">
       <button type="button" class="modal__close" data-close-modal aria-label="Close">&times;</button>
       <h2 id="checkoutTitle">Checkout</h2>
-      <p class="section-sub">Pay with bKash or Nagad, then send the transaction ID on Discord.</p>
+      <p class="section-sub">Pay with bKash, Nagad or your store wallet. Staff verify every order before delivery.</p>
 
       <div class="checkout-item" style="margin-top:18px;">
         <div>
@@ -187,6 +188,19 @@
           <span>Delivered to <b id="coIgn">—</b></span>
         </div>
         <b id="coPrice">৳0</b>
+      </div>
+
+      <div class="checkout-wallet" id="checkoutWallet">
+        <div class="checkout-wallet__main">
+          <span><i class="fa-solid fa-wallet"></i> Wallet balance</span>
+          <strong id="coWalletBalance">৳—</strong>
+        </div>
+        <div class="checkout-wallet__side">
+          <a class="checkout-wallet__topup" href="../account/?topup=1#wallet" id="coWalletTopup">
+            Top up <i class="fa-solid fa-arrow-right"></i>
+          </a>
+          <span id="coWalletNote">Checking your wallet…</span>
+        </div>
       </div>
 
       <p class="section-label"><i class="fa-solid fa-wallet"></i> Choose payment method</p>
@@ -201,18 +215,21 @@
       <button type="button" class="modal__close" data-close-modal aria-label="Close">&times;</button>
       <div class="confirm-icon"><i class="fa-solid fa-check"></i></div>
       <h2 class="confirm-title" id="confirmTitle">Order placed</h2>
-      <p class="confirm-sub">Send the transaction ID on Discord and staff will deliver your purchase in-game.</p>
+      <p class="confirm-sub" id="confirmSub">Send the transaction ID on Discord and staff will deliver your purchase in-game.</p>
 
       <div class="confirm-list">
         <div><span>Order ID</span><code id="cfId">—</code></div>
         <div><span>Item</span><strong id="cfItem">—</strong></div>
         <div><span>Amount</span><strong id="cfAmount">—</strong></div>
-        <div><span>Status</span><span class="badge status-pill--pending">Pending</span></div>
+        <div><span>Status</span><span class="badge status-pill--pending" id="cfStatus">Pending</span></div>
       </div>
 
       <div class="confirm-actions">
-        <a class="btn btn-primary" href="https://discord.gg/GU9426EpBM" data-discord target="_blank" rel="noopener">
+        <a class="btn btn-primary" id="cfDiscord" href="https://discord.gg/GU9426EpBM" data-discord target="_blank" rel="noopener">
           <i class="fa-brands fa-discord"></i> Send proof on Discord
+        </a>
+        <a class="btn btn-gold" id="cfWalletLink" href="../account/#topups" hidden>
+          <i class="fa-solid fa-wallet"></i> View my wallet
         </a>
         <button type="button" class="btn btn-ghost" data-close-modal>Done</button>
       </div>
