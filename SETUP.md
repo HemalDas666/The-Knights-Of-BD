@@ -270,7 +270,7 @@ Without this, sign-in and email actions can fail with `auth/unauthorized-domain`
 2. They choose **bKash** or **Nagad**, send money with **Send Money** to the number shown,
    and keep the transaction ID.
    - bKash: `01765980414`
-   - Nagad: `01875214396`
+   - Nagad: `01314726844`
    - Both numbers live in `js/config.js` → `PAYMENTS`.
 3. In the top-up modal they enter the **amount**, the **sender number**, the **TrxID**
    and an optional note, then submit.

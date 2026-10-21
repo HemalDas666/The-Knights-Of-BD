@@ -129,7 +129,7 @@ export const PAYMENTS = [
   {
     id: 'nagad',
     name: 'Nagad',
-    number: '01875214396',
+    number: '01314726844',
     icon: 'fa-solid fa-mobile-screen-button',
     step: 'Send Money'
   }
